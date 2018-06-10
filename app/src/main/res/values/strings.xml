@@ -2,7 +2,14 @@
     <string name="app_name">AndroidEx1</string>
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
-    <string name="current_OS_txt">Current OS Version: </string>
-    <string name="current_OS_value">0</string>
+    <string name="currentOS_txt">Current OS Version: </string>
+    <string name="currentOS_value">0</string>
     <string name="btn_analyze">Analyze</string>
+    <string name="parameter_txt">Parameter</string>
+    <string name="value_txt">Value</string>
+    <string name="score_txt">Score</string>
+    <string name="deviceSecure_txt">Device Lock</string>
+    <string name="deviceSecure_value">0</string>
+    <string name="deviceScure_score">-1</string>
+    <string name="currentOS_score">-1</string>
 </resources>

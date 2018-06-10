@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,12 +25,13 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int REQUEST_CALENDAR = 0;
     public static final String EXTRA_MESSAGE = "com.example.chiragkular.MESSAGE";
-    private static Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        readOSVersion(getApplicationContext());
 //        getAllApps(getApplicationContext());
+        MyConstants mc = new MyConstants(MainActivity.this, this);
         setContentView(R.layout.activity_main);
     }
 
@@ -41,9 +43,17 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void analyzeSystem(View view){
-        getCurrentOSVersion();
-        getAllApps(getApplicationContext());
+    public void analyzeSystem(View view) throws Settings.SettingNotFoundException {
+
+        DeviceSecure ds = new DeviceSecure();
+        int deviceSecure_Score = ds.DeviceSecureAnalysis();
+        TextView score_deviceSecure = findViewById(R.id.txtScore_deviceSecure);
+        score_deviceSecure.setText(deviceSecure_Score);
+
+        DeviceVersion dv= new DeviceVersion();
+        int deviceVersion_Score = dv.DeviceVersionAnalysis();
+        TextView score_deviceVersion = findViewById(R.id.txtScore_deviceVersion);
+        score_deviceVersion.setText(deviceVersion_Score);
 
     }
 
@@ -54,9 +64,6 @@ public class MainActivity extends AppCompatActivity {
         currentOSVersion.setText(versionRelease);
     }
 
-    public void readCalendar(){
-
-    }
 
     public void getAllApps(Context context){
         PackageManager packageManager = context.getPackageManager();
@@ -107,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CALENDAR)
                 != PackageManager.PERMISSION_GRANTED) {
             // Permission Available
-            readCalendar();
+
         }
         else{
             // Permission not Granted

@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,13 +34,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void sendMessage(View view){
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.editText);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
-    }
+//    public void sendMessage(View view){
+//        Intent intent = new Intent(this, DisplayMessageActivity.class);
+//        EditText editText = (EditText) findViewById(R.id.editText);
+//        String message = editText.getText().toString();
+//        intent.putExtra(EXTRA_MESSAGE, message);
+//        startActivity(intent);
+//    }
 
     public void analyzeSystem(View view) throws Settings.SettingNotFoundException {
 
@@ -57,12 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getCurrentOSVersion(){
-        int version = Build.VERSION.SDK_INT;
-        String versionRelease = Build.VERSION.RELEASE;
-        TextView currentOSVersion = findViewById(R.id.txtVal_currentOS);
-        currentOSVersion.setText(versionRelease);
-    }
+
 
 
     public void getAllApps(Context context){

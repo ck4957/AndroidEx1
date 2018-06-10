@@ -10,6 +10,6 @@
     <string name="score_txt">Score</string>
     <string name="deviceSecure_txt">Device Lock</string>
     <string name="deviceSecure_value">0</string>
-    <string name="deviceScure_score">-1</string>
+    <string name="deviceSecure_score">-1</string>
     <string name="currentOS_score">-1</string>
 </resources>

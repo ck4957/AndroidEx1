@@ -7,112 +7,88 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="173dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/edit_message"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="444dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:onClick="sendMessage"
-        android:text="@string/button_send"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText" />
-
     <Button
         android:id="@+id/btn_analyze"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="376dp"
+        android:layout_width="87dp"
+        android:layout_height="38dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:onClick="analyzeSystem"
         android:text="@string/btn_analyze"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.453"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txt_currentOS"
         android:layout_width="128dp"
         android:layout_height="29dp"
-        android:layout_marginBottom="292dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/currentOS_txt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/txtVal_currentOS"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_parameter" />
 
     <TextView
         android:id="@+id/txtVal_currentOS"
         android:layout_width="45dp"
-        android:layout_height="31dp"
+        android:layout_height="23dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/currentOS_value"
-        tools:layout_editor_absoluteX="170dp"
-        tools:layout_editor_absoluteY="192dp" />
+        app:layout_constraintEnd_toStartOf="@+id/txtScore_deviceVersion"
+        app:layout_constraintStart_toEndOf="@+id/txt_currentOS"
+        app:layout_constraintTop_toBottomOf="@+id/txtVal_Value" />
 
     <TextView
         android:id="@+id/txt_parameter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_width="82dp"
+        android:layout_height="26dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/parameter_txt"
-        app:layout_constraintBottom_toTopOf="@+id/txt_currentOS"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_analyze" />
 
     <TextView
         android:id="@+id/txtVal_Value"
         android:layout_width="61dp"
         android:layout_height="22dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="88dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/value_txt"
-        app:layout_constraintBottom_toTopOf="@+id/txtVal_currentOS"
+        app:layout_constraintEnd_toStartOf="@+id/txtScore_score"
         app:layout_constraintStart_toEndOf="@+id/txt_parameter"
-        app:layout_constraintTop_toBottomOf="@+id/btn_analyze"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_analyze" />
 
     <TextView
         android:id="@+id/txtScore_score"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/score_txt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtVal_Value"
-        tools:layout_editor_absoluteY="166dp" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_analyze" />
 
     <TextView
         android:id="@+id/txtScore_deviceVersion"
         android:layout_width="33dp"
-        android:layout_height="18dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/currentOS_score"
-        tools:layout_editor_absoluteX="283dp"
-        tools:layout_editor_absoluteY="193dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtScore_score" />
 
     <TextView
         android:id="@+id/txt_deviceSecure"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/deviceSecure_txt"
@@ -123,9 +99,11 @@
         android:id="@+id/txtVal_deviceSecure"
         android:layout_width="48dp"
         android:layout_height="22dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/deviceSecure_value"
+        app:layout_constraintEnd_toStartOf="@+id/txtScore_deviceSecure"
         app:layout_constraintStart_toEndOf="@+id/txt_deviceSecure"
         app:layout_constraintTop_toBottomOf="@+id/txtVal_currentOS" />
 
@@ -134,11 +112,9 @@
         android:layout_width="35dp"
         android:layout_height="20dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/deviceScure_score"
+        android:text="@string/deviceSecure_score"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtVal_deviceSecure"
         app:layout_constraintTop_toBottomOf="@+id/txtScore_deviceVersion" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">AndroidEx1</string>
-    <string name="edit_message">Enter a message</string>
-    <string name="button_send">Send</string>
     <string name="currentOS_txt">Current OS Version: </string>
     <string name="currentOS_value">0</string>
     <string name="btn_analyze">Analyze</string>

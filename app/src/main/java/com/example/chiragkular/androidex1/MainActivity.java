@@ -47,12 +47,12 @@ public class MainActivity extends AppCompatActivity {
         DeviceSecure ds = new DeviceSecure();
         int deviceSecure_Score = ds.DeviceSecureAnalysis();
         TextView score_deviceSecure = findViewById(R.id.txtScore_deviceSecure);
-        score_deviceSecure.setText(deviceSecure_Score);
+        score_deviceSecure.setText(String.valueOf(deviceSecure_Score));
 
         DeviceVersion dv= new DeviceVersion();
         int deviceVersion_Score = dv.DeviceVersionAnalysis();
         TextView score_deviceVersion = findViewById(R.id.txtScore_deviceVersion);
-        score_deviceVersion.setText(deviceVersion_Score);
+        score_deviceVersion.setText(String.valueOf(deviceVersion_Score));
 
     }
 

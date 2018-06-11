@@ -5,116 +5,40 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/as2">
+
+
+    <TextView
+        android:id="@+id/homeText"
+        android:layout_width="325dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="384dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:text="@string/hit_button_to_evalute"
+        app:layout_constraintBottom_toTopOf="@+id/homeButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/btn_analyze"
-        android:layout_width="87dp"
-        android:layout_height="38dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:onClick="analyzeSystem"
-        android:text="@string/btn_analyze"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txt_currentOS"
-        android:layout_width="128dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/currentOS_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_parameter" />
-
-    <TextView
-        android:id="@+id/txtVal_currentOS"
-        android:layout_width="45dp"
-        android:layout_height="23dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/currentOS_value"
-        app:layout_constraintEnd_toStartOf="@+id/txtScore_deviceVersion"
-        app:layout_constraintStart_toEndOf="@+id/txt_currentOS"
-        app:layout_constraintTop_toBottomOf="@+id/txtVal_Value" />
-
-    <TextView
-        android:id="@+id/txt_parameter"
-        android:layout_width="82dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/parameter_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_analyze" />
-
-    <TextView
-        android:id="@+id/txtVal_Value"
-        android:layout_width="61dp"
-        android:layout_height="22dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/value_txt"
-        app:layout_constraintEnd_toStartOf="@+id/txtScore_score"
-        app:layout_constraintStart_toEndOf="@+id/txt_parameter"
-        app:layout_constraintTop_toBottomOf="@+id/btn_analyze" />
-
-    <TextView
-        android:id="@+id/txtScore_score"
+        android:id="@+id/homeButton"
+        style="@android:style/Widget.Button.Toggle"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/score_txt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_analyze" />
-
-    <TextView
-        android:id="@+id/txtScore_deviceVersion"
-        android:layout_width="33dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/currentOS_score"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtScore_score" />
-
-    <TextView
-        android:id="@+id/txt_deviceSecure"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/deviceSecure_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_currentOS" />
-
-    <TextView
-        android:id="@+id/txtVal_deviceSecure"
-        android:layout_width="48dp"
-        android:layout_height="22dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/deviceSecure_value"
-        app:layout_constraintEnd_toStartOf="@+id/txtScore_deviceSecure"
-        app:layout_constraintStart_toEndOf="@+id/txt_deviceSecure"
-        app:layout_constraintTop_toBottomOf="@+id/txtVal_currentOS" />
-
-    <TextView
-        android:id="@+id/txtScore_deviceSecure"
-        android:layout_width="35dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/deviceSecure_score"
+        android:onClick="transitButton"
+        android:elevation="0dp"
+        android:text="Evaluate"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtScore_deviceVersion" />
-
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

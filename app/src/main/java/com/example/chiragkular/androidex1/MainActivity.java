@@ -1,14 +1,11 @@
 package com.example.chiragkular.androidex1;
 
 import android.Manifest;
-import android.app.DownloadManager;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PermissionInfo;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
@@ -20,13 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +34,12 @@ public class MainActivity extends AppCompatActivity {
 //        getAllApps(getApplicationContext());
         MyConstants mc = new MyConstants(MainActivity.this, this);
         setContentView(R.layout.activity_main);
+
+    }
+    public void transitButton(View view)
+    {
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
     }
 
 //    public void sendMessage(View view){
@@ -53,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
 //        startActivity(intent);
 //    }
 
-    public void analyzeSystem(View view) throws IOException {
-
+//    public void analyzeSystem(View view) throws Settings.SettingNotFoundException {
+//
 //        DeviceSecure ds = new DeviceSecure();
 //        int deviceSecure_Score = ds.DeviceSecureAnalysis();
 //        TextView score_deviceSecure = findViewById(R.id.txtScore_deviceSecure);
@@ -64,93 +61,26 @@ public class MainActivity extends AppCompatActivity {
 //        int deviceVersion_Score = dv.DeviceVersionAnalysis();
 //        TextView score_deviceVersion = findViewById(R.id.txtScore_deviceVersion);
 //        score_deviceVersion.setText(String.valueOf(deviceVersion_Score));
-        getAllApps(getApplicationContext());
-        //parseHTML("com.google.android.youtube");
-        //parseHTML("com.igorkh.trustcheck.securitycheck");
-        //new PlayStoreScraping().execute();
-    }
-
-    public void parseHTML2(String pkgName){
-//        OkHttpClient client = new OkHttpClient();
+//        //getAllApps(getApplicationContext());
+//        AppPermissions perm = new AppPermissions();
+//        perm.getAllApps();
+//        perm.print();
+//        Log.e("SystemEvaluation",String.valueOf(perm.evaluateSystem()));
 //
-//        DownloadManager.Request request = new DownloadManager.Request.Builder()
-//                .url("https://api.apptweak.com/android/applications/com.google.android.youtube.json?country=us&language=en")
-//                .get()
-//                .addHeader("x-apptweak-key", "wXmJE3huo2WZtpA8-B1Sn2koG2c")
-//                .addHeader("cache-control", "no-cache")
-//                .addHeader("postman-token", "c65b9b60-ff7d-5e60-ba71-ffc05442a26f")
-//                .build();
-//
-//        Response response = client.newCall(request).execute();
-    }
-//    public void parseHTML(String pkgName) throws IOException {
-//
-//        Document doc = Jsoup.connect("https://play.google.com/store/apps/details?id="+pkgName)
-//                //.timeout(60000)
-////                .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
-////                .referrer("http://www.google.com")
-//                .get();
-//        Log.i("Doc ",doc.title());
-////        Elements newsHeadlines = doc.select("div.pf5lIe");
-////        for (Element headline : newsHeadlines) {
-////            //Log.i("%s\n\t%s",newsHeadlines.get(0).attr("aria-label"));
-////            Log.e("headline",headline.data());
-////        }
 //    }
 
 
-    public void getAllApps(Context context){
 
-        final PackageManager pm = getPackageManager();
-        final List<ApplicationInfo> installedApps = pm.getInstalledApplications(PackageManager.GET_META_DATA);
 
-        for ( ApplicationInfo app : installedApps ) {
-            //Details:
-            //Log.d(TAG, "Package: " + app.packageName);
-            Log.e("", app.packageName);
-            //Log.d(TAG, "UID: " + app.uid);
-            //Log.d(TAG, "Directory: " + app.sourceDir);
-
-//            //Permissions:
-//            StringBuffer permissions = new StringBuffer();
-//
-//            try {
-//                PackageInfo packageInfo = pm.getPackageInfo(app.packageName, PackageManager.GET_PERMISSIONS);
-//                String[] requestedPermissions = packageInfo.requestedPermissions;
-//                if (requestedPermissions != null) {
-//                    for (int i = 0; i < requestedPermissions.length; i++) {
-//                        permissions.append(requestedPermissions[i] + "\n");
-//                        String a = requestedPermissions[i];
-//                        //Log.i("-Requested Permissions",a);
-//                        if (a.contains("android.permission.")) {
-//                            PermissionInfo pi = getPackageManager().getPermissionInfo(a, PackageManager.GET_META_DATA);
-//                            Log.i("--Permission Info",String.valueOf(pi.protectionLevel));
-//                            String protctionLevel;
-//                            switch (pi.protectionLevel) {
-//                                case PermissionInfo.PROTECTION_NORMAL:
-//                                    protctionLevel = "normal";
-//                                    break;
-//                                case PermissionInfo.PROTECTION_DANGEROUS:
-//                                    protctionLevel = "dangerous";
-//                                    break;
-//                                case PermissionInfo.PROTECTION_SIGNATURE:
-//                                    protctionLevel = "signature";
-//                                    break;
-//                                default:
-//                                    protctionLevel = "<unknown>";
-//                                    break;
-//                            }
-//                            Log.e("--Protection Level", pi.name + ": " + protctionLevel);
-//                            //list_permission.add(a+"        "+protctionLevel);
-//                        }
-//                        //Log.d(TAG, "Permissions: " + permissions);
-//                    }
-//                }
-//            }
-//            catch ( PackageManager.NameNotFoundException e) {
-//                e.printStackTrace();
-//            }
+    public void OtherSecurity(Context context)
+    {
+        int devOption = Settings.Secure.getInt(this.getContentResolver(), Settings.Global.DEVELOPMENT_SETTINGS_ENABLED , 0);
+        try {
+            int loc = Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.LOCATION_MODE);
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
         }
+
     }
 
     public String printLoops(Object[] someList){

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomePage"
+    >
+    <Button
+        android:id="@+id/btn_analyze"
+        android:layout_width="87dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:onClick="analyzeSystem"
+        android:text="@string/btn_analyze"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_currentOS"
+        android:layout_width="98dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/currentOS_txt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_parameter" />
+
+    <TextView
+        android:id="@+id/txtVal_currentOS"
+        android:layout_width="83dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/currentOS_value"
+        app:layout_constraintEnd_toStartOf="@+id/txtScore_deviceVersion"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toEndOf="@+id/txt_currentOS"
+        app:layout_constraintTop_toBottomOf="@+id/txtVal_Value" />
+
+    <TextView
+        android:id="@+id/txt_parameter"
+        android:layout_width="96dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/parameter_txt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_analyze" />
+
+    <TextView
+        android:id="@+id/txtVal_Value"
+        android:layout_width="73dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/value_txt"
+        app:layout_constraintEnd_toStartOf="@+id/txtScore_score"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toEndOf="@+id/txt_parameter"
+        app:layout_constraintTop_toBottomOf="@+id/btn_analyze" />
+
+    <TextView
+        android:id="@+id/txtScore_score"
+        android:layout_width="77dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/score_txt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_analyze" />
+
+    <TextView
+        android:id="@+id/txtScore_deviceVersion"
+        android:layout_width="71dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/currentOS_score"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtScore_score" />
+
+    <TextView
+        android:id="@+id/txt_deviceSecure"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:text="@string/deviceSecure_txt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_currentOS" />
+
+    <TextView
+        android:id="@+id/txtVal_deviceSecure"
+        android:layout_width="87dp"
+        android:layout_height="27dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="84dp"
+        android:text="@string/deviceSecure_value"
+        app:layout_constraintEnd_toStartOf="@+id/txtScore_deviceSecure"
+        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintStart_toEndOf="@+id/txt_deviceSecure"
+        app:layout_constraintTop_toBottomOf="@+id/txtVal_currentOS" />
+
+    <TextView
+        android:id="@+id/txtScore_deviceSecure"
+        android:layout_width="69dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="80dp"
+        android:text="@string/deviceSecure_score"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtScore_deviceVersion" />
+
+
+
+</android.support.constraint.ConstraintLayout>
+
+

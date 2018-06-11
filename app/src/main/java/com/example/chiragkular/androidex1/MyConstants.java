@@ -11,6 +11,11 @@ public class MyConstants {
     public static final int MED_RISK = 1;
     public static final int HIGH_RISK = 2;
 
+    public static final String PROTECTION_NORMAL = "Normal";
+    public static final String PROTECTION_DANGEROUS = "Dangerous";
+    public static final String PROTECTION_SIGNATURE = "Signature";
+    public static final String PROTECTION_UNKNOWN = "Unknown";
+    //public
     //Nougat N_MR1
     public static final int API_LEVEL_26 = 26;
     //Oreo O_MR1

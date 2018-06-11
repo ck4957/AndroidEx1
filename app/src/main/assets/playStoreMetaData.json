@@ -1,0 +1,222 @@
+[
+  {
+    "application_id": "com.google.android.apps.messaging",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "apps-help@google.com",
+      "website": "http://www.google.com/mobile/android/"
+    },
+    "ratings": {
+      "average": 4.1829962730407715
+    }
+  },
+  {
+    "application_id": "com.google.ar.core",
+    "developer": {
+      "name": "Google LLC",
+      "email": "apps-help@google.com",
+      "website": "https://developers.google.com/ar/"
+    },
+    "ratings": {
+      "average": 4.39426326751709
+    }
+  },
+  {
+    "application_id": "com.google.android.apps.inputmethod.hindi",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "apps-help@google.com",
+      "website": "http://www.google.com/inputtools/"
+    },
+    "ratings": {
+      "average": 4.326001167297363
+    }
+  },
+  {
+    "application_id": "com.google.android.deskclock",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "android-clock-feedback@google.com",
+      "website": "http://www.google.com/"
+    },
+    "ratings": {
+      "average": 4.1281819343566895
+    }
+  },
+  {
+    "application_id": "com.google.android.gm",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "apps-help@google.com",
+      "website": "http://support.google.com/mail/bin/topic.py?hl=en&topic=2451697&parent=2451730&ctx=topic"
+    },
+    "ratings": {
+      "average": 4.327335357666016
+    }
+  },
+  {
+    "application_id": "com.google.android.music",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "apps-help@google.com",
+      "website": "http://play.google.com/music/"
+    },
+    "ratings": {
+      "average": 3.9284510612487793
+    }
+  },
+  {
+    "application_id": "com.google.android.dialer",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "apps-help@google.com",
+      "website": "http://www.android.com/"
+    },
+    "ratings": {
+      "average": 3.6428005695343018
+    }
+  },
+  {
+    "application_id": "com.google.android.apps.docs",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "google-drive-help@google.com",
+      "website": "https://support.google.com/drive/?p=android_drive_help"
+    },
+    "ratings": {
+      "average": 4.3790459632873535
+    }
+  },
+  {
+    "application_id": "com.google.android.apps.maps",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "apps-help@google.com",
+      "website": "http://maps.google.com/about/"
+    },
+    "ratings": {
+      "average": 4.344972133636475
+    }
+  },
+  {
+    "application_id": "com.google.android.webview",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "apps-help@google.com",
+      "website": "http://www.android.com"
+    },
+    "ratings": {
+      "average": 4.398228645324707
+    }
+  },
+  {
+    "application_id": "com.android.chrome",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "apps-help@google.com",
+      "website": "http://www.google.com/chrome/android"
+    },
+    "ratings": {
+      "average": 4.292551517486572
+    }
+  },
+  {
+    "application_id": "com.google.android.gms",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "apps-help@google.com",
+      "website": "https://developers.google.com/android/google-play-services/"
+    },
+    "ratings": {
+      "average": 4.001152515411377
+    }
+  },
+  {
+    "application_id": "com.google.android.tts",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "tts-feedback@google.com",
+      "website": "http://www.google.com/"
+    },
+    "ratings": {
+      "average": 4.110107898712158
+    }
+  },
+  {
+    "application_id": "com.google.android.videos",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "apps-help@google.com",
+      "website": "http://support.google.com/googleplay"
+    },
+    "ratings": {
+      "average": 3.674614906311035
+    }
+  },
+  {
+    "application_id": "com.google.android.apps.nexuslauncher",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "apps-help@google.com",
+      "website": "http://www.google.com/mobile/android/"
+    },
+    "ratings": {
+      "average": 4.235626697540283
+    }
+  },
+  {
+    "application_id": "com.google.android.apps.photos",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "apps-help@google.com",
+      "website": "https://support.google.com/photos"
+    },
+    "ratings": {
+      "average": 4.510608196258545
+    }
+  },
+  {
+    "application_id": "com.google.android.calendar",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "apps-help@google.com",
+      "website": "http://support.google.com/calendar?p=mobilesync"
+    },
+    "ratings": {
+      "average": 4.157364845275879
+    }
+  },
+  {
+    "application_id": "com.google.android.inputmethod.pinyin",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "apps-help@google.com",
+      "website": "http://www.google.com/inputtools/"
+    },
+    "ratings": {
+      "average": 4.0126142501831055
+    }
+  },
+  {
+    "application_id": "com.google.android.apps.wallpaper",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "wallpapers-support@google.com",
+      "website": "http://www.android.com/"
+    },
+    "ratings": {
+      "average": 4.276475429534912
+    }
+  },
+  {
+    "application_id": "com.google.android.inputmethod.latin",
+    "developer": {
+      "name": "Google Inc.",
+      "email": "apps-help@google.com",
+      "website": "http://www.google.com/"
+    },
+    "ratings": {
+      "average": 4.197342872619629
+    }
+  }
+]

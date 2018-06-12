@@ -143,10 +143,11 @@ public class AppPermissions {
     public void print()
     {
         AppDetails apd;
-        for(int i=0;i<appList.size();i++)
+        for(int i=0;i<normalApp.size();i++)
         {
-            apd = appList.get(i);
-            Log.e("AppName: ",apd.appName+ "Score: "+apd.appScore);
+            //apd = appList.get(i);
+            //Log.e("AppName: ",apd.appName+ "Score: "+apd.appScore);
+            Log.e("App",normalApp.get(i));
         }
     }
 }

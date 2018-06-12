@@ -4,8 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ADFF2F"
     tools:context=".HomePage"
     >
+
+    <TextView
+        android:id="@+id/txt_deviceSecure3"
+        android:layout_width="100dp"
+        android:layout_height="21dp"
+        android:text="@string/deviceSecure_txt"
+        tools:layout_editor_absoluteX="156dp"
+        tools:layout_editor_absoluteY="247dp" />
+
+    <TextView
+        android:id="@+id/txt_deviceSecure2"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:text="@string/deviceSecure_txt"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="243dp" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <Button
         android:id="@+id/btn_analyze"
         android:layout_width="87dp"
@@ -35,7 +56,7 @@
         android:layout_height="25dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="48dp"
         android:text="@string/currentOS_value"
         app:layout_constraintEnd_toStartOf="@+id/txtScore_deviceVersion"
         app:layout_constraintHorizontal_bias="0.488"
@@ -101,10 +122,10 @@
         android:layout_height="27dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="32dp"
         android:text="@string/deviceSecure_value"
         app:layout_constraintEnd_toStartOf="@+id/txtScore_deviceSecure"
-        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintHorizontal_bias="0.406"
         app:layout_constraintStart_toEndOf="@+id/txt_deviceSecure"
         app:layout_constraintTop_toBottomOf="@+id/txtVal_currentOS" />
 
@@ -112,11 +133,24 @@
         android:id="@+id/txtScore_deviceSecure"
         android:layout_width="69dp"
         android:layout_height="28dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="56dp"
         android:text="@string/deviceSecure_score"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtScore_deviceVersion" />
 
+    <Button
+        android:id="@+id/TransitToList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:onClick="TransitToListApp"
+        android:text="Apps"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

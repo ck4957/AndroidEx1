@@ -14,6 +14,7 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+        MyConstants mc = new MyConstants(HomePage.this, this);
         Intent intent = getIntent();
 
     }
@@ -38,8 +39,14 @@ public class HomePage extends AppCompatActivity {
         //getAllApps(getApplicationContext());
         AppPermissions perm = new AppPermissions();
         perm.getAllApps();
-        perm.print();
-        Log.e("SystemEvaluation",String.valueOf(perm.evaluateSystem()));
+        perm.appClassification();
+        //perm.print();
+        //Log.e("SystemEvaluation",String.valueOf(perm.evaluateSystem()));
 
+    }
+
+    public void TransitToListApp(View view) {
+        Intent intent = new Intent(this, listApp.class);
+        startActivity(intent);
     }
 }

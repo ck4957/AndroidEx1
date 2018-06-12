@@ -35,11 +35,11 @@ public class AppDetails
     {
         this.appStatus = status;
     }
-    public void setName(String name)
+    public void setAppName(String name)
     {
         this.appName = name;
     }
-    public String getName()
+    public String getAppName()
     {
         return this.appName;
     }

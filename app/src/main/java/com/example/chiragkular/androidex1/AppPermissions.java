@@ -18,89 +18,70 @@ public class AppPermissions {
     List<String> signatureApp = new ArrayList<String>();
     public void getAllApps()
     {
-        final PackageManager pm = MyConstants.getmContext().getPackageManager();
-        final List<ApplicationInfo> installedApps = pm.getInstalledApplications(PackageManager.GET_META_DATA);
+        final PackageManager pkgMngr = MyConstants.getmContext().getPackageManager();
+        final List<ApplicationInfo> appsList = pkgMngr.getInstalledApplications(PackageManager.GET_META_DATA);
 
-        for ( ApplicationInfo app : installedApps ) {
-            //Details:
-            AppDetails apd =new AppDetails();
-            apd.setName(app.packageName);
-            //Log.d("packageName", "Package: " + app.packageName);
-            //Log.d(TAG, "UID: " + app.uid);
-            //Log.d(TAG, "Directory: " + app.sourceDir);
+        for (ApplicationInfo appInfo : appsList) {
+            AppDetails appDetails = new AppDetails();
 
+            appDetails.setAppName(appInfo.packageName);
             //Permissions:
-            StringBuffer permissions = new StringBuffer();
-
+            StringBuffer allAppsPermissions = new StringBuffer();
             try {
-                PackageInfo packageInfo = pm.getPackageInfo(app.packageName, PackageManager.GET_PERMISSIONS);
-                String[] requestedPermissions = packageInfo.requestedPermissions;
+                PackageInfo pkgInfo = pkgMngr.getPackageInfo(appInfo.packageName, PackageManager.GET_PERMISSIONS);
+                String[] requestedPermissions = pkgInfo.requestedPermissions;
                 if (requestedPermissions != null) {
-                    int countNormal = 0, countDanger = 0, countSignature = 0;
                     for (int i = 0; i < requestedPermissions.length; i++) {
-                        permissions.append(requestedPermissions[i] + "\n");
-                        String a = requestedPermissions[i];
-                        //Log.i("-Requested Permissions",a);
-                        if (a.contains("android.permission.")) {
-                            PermissionInfo pi = MyConstants.getmContext().getPackageManager().getPermissionInfo(a, PackageManager.GET_META_DATA);
-                            if(pi!=null) {
-                                //Log.i("--Permission Info",String.valueOf(pi.protectionLevel));
-                                String protctionLevel;
-
-                                switch (pi.protectionLevel) {
+                        allAppsPermissions.append(requestedPermissions[i] + "\n");
+                        String singlePermission = requestedPermissions[i];
+                        if (singlePermission.contains("android.permission.")) {
+                            PermissionInfo permInfo = MyConstants.getmContext().getPackageManager().getPermissionInfo(singlePermission, PackageManager.GET_META_DATA);
+                            if(permInfo!=null) {
+                                //String protectionLevel;
+                                switch (permInfo.protectionLevel)
+                                {
                                     case PermissionInfo.PROTECTION_NORMAL:
-                                        protctionLevel = MyConstants.PROTECTION_NORMAL;
-                                        apd.normalPermissionCount++;
+                                        //protectionLevel = MyConstants.PROTECTION_NORMAL;
+                                        appDetails.normalPermissionCount++;
                                         break;
                                     case PermissionInfo.PROTECTION_DANGEROUS:
-                                        protctionLevel = MyConstants.PROTECTION_DANGEROUS;
-                                        apd.dangerPermissionCount++;
+                                        //protectionLevel = MyConstants.PROTECTION_DANGEROUS;
+                                        appDetails.dangerPermissionCount++;
                                         break;
                                     case PermissionInfo.PROTECTION_SIGNATURE:
-                                        protctionLevel = MyConstants.PROTECTION_SIGNATURE;
-                                        apd.signaturePermissionCount++;
+                                        //protectionLevel = MyConstants.PROTECTION_SIGNATURE;
+                                        appDetails.signaturePermissionCount++;
                                         break;
                                     default:
-                                        protctionLevel = MyConstants.PROTECTION_UNKNOWN;
+                                        //protectionLevel = MyConstants.PROTECTION_UNKNOWN;
                                         break;
-                                        }
-                                //Log.e("--Protection Level", pi.name + ": " + protctionLevel);
-
+                                }
                             }
-
-                            //list_permission.add(a+"        "+protctionLevel);
                         }
-                        //Log.d(TAG, "Permissions: " + permissions);
                     }
-
                 }
-                String  applicationStatus =apd.getApplicationStatus();
+                String applicationStatus = appDetails.getApplicationStatus();
                 if(applicationStatus.equals(MyConstants.PROTECTION_NORMAL))
                 {
-                    apd.setStatus(MyConstants.PROTECTION_NORMAL);
-                    apd.setScore(MyConstants.PROTECTION_NORMAL);
+                    appDetails.setStatus(MyConstants.PROTECTION_NORMAL);
+                    appDetails.setScore(MyConstants.PROTECTION_NORMAL);
                 }
                 else if(applicationStatus.equals(MyConstants.PROTECTION_DANGEROUS))
                 {
-                    apd.setStatus(MyConstants.PROTECTION_DANGEROUS);
-                    apd.setScore(MyConstants.PROTECTION_DANGEROUS);
+                    appDetails.setStatus(MyConstants.PROTECTION_DANGEROUS);
+                    appDetails.setScore(MyConstants.PROTECTION_DANGEROUS);
                 }
                 else {
-                    apd.setStatus(MyConstants.PROTECTION_SIGNATURE);
-                    apd.setScore(MyConstants.PROTECTION_SIGNATURE);
+                    appDetails.setStatus(MyConstants.PROTECTION_SIGNATURE);
+                    appDetails.setScore(MyConstants.PROTECTION_SIGNATURE);
                 }
-                appList.add(apd);
+                appList.add(appDetails);
             }
-            catch ( PackageManager.NameNotFoundException e) {
+            catch(PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
         }
-        /*for(int i = 0; i<appIter;i++)
-        {
-            Log.e("App:",AppStatus[i][i]);
-            Log.e("App:",AppStatus[i][1]);
 
-        }*/
     }
     public void appClassification()
     {
@@ -108,7 +89,7 @@ public class AppPermissions {
         for(int i=0;i<appList.size();i++)
         {
             apd = appList.get(i);
-            name = apd.getName();
+            name = apd.getAppName();
             status = apd.getStatus();
             if(status.equals(MyConstants.PROTECTION_NORMAL))
             {

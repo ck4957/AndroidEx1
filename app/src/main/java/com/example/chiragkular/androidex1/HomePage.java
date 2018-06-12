@@ -8,6 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+
 public class HomePage extends AppCompatActivity {
 
     @Override
@@ -25,7 +29,7 @@ public class HomePage extends AppCompatActivity {
         displayMsg.setText("To know your system security score HIT Evaluate");
 
     }*/
-    public void analyzeSystem(View view) throws Settings.SettingNotFoundException {
+    public void analyzeSystem(View view) throws Settings.SettingNotFoundException, IOException, JSONException {
 
         DeviceSecure ds = new DeviceSecure();
         int deviceSecure_Score = ds.DeviceSecureAnalysis();
@@ -39,9 +43,11 @@ public class HomePage extends AppCompatActivity {
         //getAllApps(getApplicationContext());
         AppPermissions perm = new AppPermissions();
         perm.getAllApps();
-        perm.appClassification();
-        //perm.print();
-        //Log.e("SystemEvaluation",String.valueOf(perm.evaluateSystem()));
+        perm.print();
+        Log.e("SystemEvaluation",String.valueOf(perm.evaluateSystem()));
+
+        PlayStoreRating psr = new PlayStoreRating();
+        psr.AppRatingsAnalysis();
 
     }
 

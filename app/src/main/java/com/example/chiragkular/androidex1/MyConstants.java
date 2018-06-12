@@ -7,6 +7,8 @@ import android.view.animation.AccelerateInterpolator;
 
 public class MyConstants {
 
+    public static final String PLAYSTORE_JSON_FILE = "playStoreMetaData.json";
+
     public static final int LOW_RISK = 0;
     public static final int MED_RISK = 1;
     public static final int HIGH_RISK = 2;

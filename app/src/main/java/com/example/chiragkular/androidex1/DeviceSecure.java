@@ -15,12 +15,12 @@ public class DeviceSecure {
     public boolean IsDeviceLocked(){
         KeyguardManager km = (KeyguardManager) MyConstants.getmContext().getSystemService(Context.KEYGUARD_SERVICE);
         boolean deviceSecureFlag = km.isDeviceSecure();
-        TextView deviceScure = MyConstants.getmActivity().findViewById(R.id.txtVal_deviceSecure);
-        deviceScure.setText(String.valueOf(deviceSecureFlag));
+        TextView deviceSecure = MyConstants.getmActivity().findViewById(R.id.txtVal_deviceSecure);
+        deviceSecure.setText(String.valueOf(deviceSecureFlag));
         return deviceSecureFlag;
     }
 
-    public long getTimeout() throws Settings.SettingNotFoundException{
+    public long getTimeout() {
         int timeOutinMS = Settings.System.getInt(MyConstants.getmContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT,0);
         long timeOutinSec = TimeUnit.MILLISECONDS.toSeconds(timeOutinMS);
         Log.e("System TimeOut Time (ms)", String.valueOf(timeOutinSec));
@@ -37,7 +37,7 @@ public class DeviceSecure {
             // Now check for Screen Timeout
             try {
                 timeOut = getTimeout();
-            } catch (Settings.SettingNotFoundException e) {
+            } catch (Exception e) {
                 Log.e("ERROR in get Screen Off TimeOut ","Exception",e);
             }
             if(timeOut <= 15)

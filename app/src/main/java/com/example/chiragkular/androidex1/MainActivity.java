@@ -4,10 +4,8 @@ import android.Manifest;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PermissionInfo;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
@@ -21,13 +19,14 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
 
     public static final int REQUEST_CALENDAR = 0;
     public static final String EXTRA_MESSAGE = "com.example.chiragkular.MESSAGE";
-
+    private static final String TAG = "MyActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

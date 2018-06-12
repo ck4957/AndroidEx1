@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ADFF2F"
+    tools:context=".listApp">
+
+
+    <TextView
+        android:id="@+id/signApp"
+        android:layout_width="185dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="140dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="PROTECTION_SIGNATURE"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnAppScore"
+        app:layout_constraintEnd_toStartOf="@+id/signTxt"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/dngTxt"
+        android:layout_width="147dp"
+        android:layout_height="42dp"
+        android:layout_column="1"
+        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="16dp"
+        android:layout_row="1"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="textPersonName|number|numberDecimal"
+        android:text="App"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toTopOf="@+id/signTxt"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/normApp"
+        android:layout_width="166dp"
+        android:layout_height="29dp"
+        android:layout_column="0"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="68dp"
+        android:layout_row="1"
+        android:text="PROTECTION_NORMAL"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/dangerTxt"
+        app:layout_constraintEnd_toStartOf="@+id/normTxt"
+        app:layout_constraintHorizontal_bias="0.615"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.067" />
+
+    <TextView
+        android:id="@+id/dangerTxt"
+        android:layout_width="158dp"
+        android:layout_height="30dp"
+        android:layout_column="0"
+        android:layout_marginBottom="44dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_row="2"
+        android:text="PROTECTION_DANGER"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/signApp"
+        app:layout_constraintEnd_toStartOf="@+id/dngTxt"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/normTxt"
+        android:layout_width="147dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="68dp"
+        android:textIsSelectable="false"
+        android:focusable="false"
+        android:ems="10"
+        android:inputType="textPersonName|number|numberSigned"
+        android:text="App"
+        app:layout_constraintBottom_toTopOf="@+id/dngTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.034" />
+
+    <EditText
+        android:id="@+id/signTxt"
+        android:layout_width="135dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="132dp"
+        android:layout_marginEnd="16dp"
+        android:focusable="false"
+        android:text="App"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toTopOf="@+id/btnAppScore"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnAppScore"
+        android:layout_width="311dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:onClick="appScore"
+        android:text="Press to get Application Score"
+        app:layout_constraintBottom_toTopOf="@+id/appScoreTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/appScoreTxt"
+        android:layout_width="297dp"
+        android:layout_height="31dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Score"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

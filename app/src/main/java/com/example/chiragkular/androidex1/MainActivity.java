@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void transitButton(View view)
     {
-        Intent intent = new Intent(this, HomePage.class);
+        Intent intent = new Intent(this, questions.class);
         startActivity(intent);
     }
 

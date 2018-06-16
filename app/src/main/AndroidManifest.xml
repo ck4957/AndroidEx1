@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.chiragkular.androidex1">
 
-    <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
-    <uses-permission android:name="android.permission.READ_CALENDAR"></uses-permission>
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -26,7 +26,8 @@
             android:name=".DisplayMessageActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".HomePage" />
-        <activity android:name=".listApp"></activity>
+        <activity android:name=".listApp" />
+        <activity android:name=".questions"></activity>
     </application>
 
 </manifest>

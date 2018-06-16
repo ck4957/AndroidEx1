@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#ADFF2F"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".questions">
+
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/radioGroup"
+        android:layout_width="370dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/deviceLock"
+            android:layout_width="168dp"
+            android:layout_height="59dp"
+            android:text="Is Device Lock ?"
+            android:textStyle="italic" />
+
+        <RadioButton
+            android:id="@+id/deviceYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="Yes"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/deviceNo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="onRadioButtonClicked"
+            android:text="No"
+            android:textStyle="bold" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/DevVer"
+        android:layout_width="372dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+
+        <TextView
+            android:id="@+id/txtScore_deviceVersion"
+            android:layout_width="168dp"
+            android:layout_height="59dp"
+            android:text="Device Version: "
+            android:textStyle="italic" />
+
+        <RadioButton
+            android:id="@+id/ver1"
+            android:layout_width="76dp"
+            android:layout_height="match_parent"
+            android:onClick="onRadioButtonDeviceVer"
+            android:textStyle="bold"
+            android:text="7.1" />
+
+        <RadioButton
+            android:id="@+id/ver2"
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
+            android:onClick="onRadioButtonDeviceVer"
+            android:textStyle="bold"
+            android:text="8.0" />
+
+        <RadioButton
+            android:id="@+id/ver3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="onRadioButtonDeviceVer"
+            android:textStyle="bold"
+            android:text="8.1" />
+
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/DeviceLocationRadio"
+        android:layout_width="372dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DevVer">
+
+        <TextView
+            android:id="@+id/devLocation"
+            android:layout_width="168dp"
+            android:layout_height="59dp"
+            android:text="Is device location On? "
+            android:textStyle="italic" />
+
+        <RadioButton
+            android:id="@+id/locYes"
+            android:layout_width="76dp"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:onClick="onRadioButtonDeviceLocation"
+            android:text="Yes" />
+
+        <RadioButton
+            android:id="@+id/locNo"
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:onClick="onRadioButtonDeviceLocation"
+            android:text="No" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/LockTimeOutRadio"
+        android:layout_width="162dp"
+        android:layout_height="134dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DeviceLocationRadio">
+
+        <TextView
+            android:id="@+id/txtScore_lockTimeout"
+            android:layout_width="162dp"
+            android:layout_height="34dp"
+            android:text="Lock Timeout "
+            android:textStyle="italic" />
+
+        <RadioButton
+            android:id="@+id/timeout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:onClick="onRadioButtonDeviceTimeout"
+            android:text=" = 15 sec" />
+
+        <RadioButton
+            android:id="@+id/timeout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:onClick="onRadioButtonDeviceTimeout"
+            android:text=" = 30 sec" />
+
+        <RadioButton
+            android:id="@+id/timeout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:onClick="onRadioButtonDeviceTimeout"
+            android:text=" >60 sec" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/SecurityPatchRadio"
+        android:layout_width="162dp"
+        android:layout_height="134dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DeviceLocationRadio">
+
+        <TextView
+            android:id="@+id/txtScore_securityPatch"
+            android:layout_width="162dp"
+            android:layout_height="34dp"
+            android:text="Security Patch Updates: "
+            android:textStyle="italic" />
+
+        <RadioButton
+            android:id="@+id/sec3Month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:onClick="onRadioButtonSecurityPatch"
+            android:text="within 3 months" />
+
+        <RadioButton
+            android:id="@+id/sec6Month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:onClick="onRadioButtonSecurityPatch"
+            android:text="within 6 months" />
+
+        <RadioButton
+            android:id="@+id/sec12Month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:onClick="onRadioButtonSecurityPatch"
+            android:text="more than 6 months" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/NumberOfThirdPartyApp"
+        android:layout_width="370dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SecurityPatchRadio">
+
+        <TextView
+            android:id="@+id/txtScore_NumberThirdPatch"
+            android:layout_width="162dp"
+            android:layout_height="41dp"
+            android:text="No. of 3rd party apps: "
+            android:textStyle="italic" />
+
+        <RadioButton
+            android:id="@+id/thirdParty3"
+            android:layout_width="76dp"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonThirdPartyApp"
+            android:text=" >3"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/thirdParty5"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonThirdPartyApp"
+            android:text=" >5"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/thirdParty7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonThirdPartyApp"
+            android:text=" >7"
+            android:textStyle="bold" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/DeveloperModeRadio"
+        android:layout_width="370dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NumberOfThirdPartyApp">
+
+        <TextView
+            android:id="@+id/txtScore_DeveloperMode"
+            android:layout_width="162dp"
+            android:layout_height="41dp"
+            android:text="Is developer mode on? "
+            android:textStyle="italic" />
+
+        <RadioButton
+            android:id="@+id/devmodeOn"
+            android:layout_width="76dp"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonDeveloperMode"
+            android:text="ON"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/devmodeOff"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonDeveloperMode"
+            android:text="OFF"
+            android:textStyle="bold" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/ButtonToAppScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="NEXT"
+        android:textStyle="bold"
+        android:onClick="buttonForAppScreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.971"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DeveloperModeRadio" />
+
+</android.support.constraint.ConstraintLayout>

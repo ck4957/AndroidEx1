@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import org.apache.commons.lang3.StringUtils;
@@ -65,6 +66,23 @@ public class HomePage extends AppCompatActivity {
     public void TransitToListApp(View view) {
         Intent intent = new Intent(this, listApp.class);
         startActivity(intent);
+    }
+
+    public void onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.deviceYes:
+                if (checked)
+                    Log.e("lock: Yes"," Score:0");
+                    break;
+            case R.id.deviceNo:
+                if (checked)
+                    Log.e("lock: No"," Score:2");
+                    break;
+        }
+
     }
 
     public List<String> ReadRules() throws IOException {

@@ -1,0 +1,4 @@
+rule a_b_c if a = 1 & b = 2 & f = 5 then c = 3
+rule d_e_f if d = 5 & e = 4 then f = 9
+rule name3 if a = 2 then c = 2
+rule name4 if a = 0 & b = -1 then c = -1

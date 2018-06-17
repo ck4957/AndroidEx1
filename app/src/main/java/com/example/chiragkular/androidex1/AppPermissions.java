@@ -23,7 +23,6 @@ public class AppPermissions {
 
         for (ApplicationInfo appInfo : appsList) {
             AppDetails appDetails = new AppDetails();
-
             appDetails.setAppName(appInfo.packageName);
             //Permissions:
             StringBuffer allAppsPermissions = new StringBuffer();

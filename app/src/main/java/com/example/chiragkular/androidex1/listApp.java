@@ -21,33 +21,34 @@ public class listApp extends AppCompatActivity {
     }
     public void appListPrint()
     {
-        AppPermissions ap = new AppPermissions();
-        ap.getAllApps();ap.appClassification();
-//        ArrayAdapter adapter = new ArrayAdapter<String>(this,
-//                android.R.layout.simple_list_item_1, ap.normalApp);
-//
-//        ListView listView = (ListView) findViewById(R.id.listViewApp);
-//        listView.setAdapter(adapter);
-//        ArrayAdapter adapter1 = new ArrayAdapter<String>(this,
-//                android.R.layout.simple_list_item_1, ap.dangerousApp);
-//
-//        ListView listView1 = (ListView) findViewById(R.id.dangerAppView);
-//        listView1.setAdapter(adapter1);
-        TextView norm = findViewById(R.id.normTxt);
-        norm.setText(String.valueOf(ap.normalApp.size()));
-        TextView dng = findViewById(R.id.dngTxt);
-        dng.setText(String.valueOf(ap.dangerousApp.size()));
-        TextView sign = findViewById(R.id.signTxt);
-        sign.setText(String.valueOf(ap.signatureApp.size()));
+//        AppPermissions ap = new AppPermissions();
+//        ap.getAllApps();
+//        ap.appClassification();
+////        ArrayAdapter adapter = new ArrayAdapter<String>(this,
+////                android.R.layout.simple_list_item_1, ap.normalApp);
+////
+////        ListView listView = (ListView) findViewById(R.id.listViewApp);
+////        listView.setAdapter(adapter);
+////        ArrayAdapter adapter1 = new ArrayAdapter<String>(this,
+////                android.R.layout.simple_list_item_1, ap.dangerousApp);
+////
+////        ListView listView1 = (ListView) findViewById(R.id.dangerAppView);
+////        listView1.setAdapter(adapter1);
+//        TextView norm = findViewById(R.id.normTxt);
+//        norm.setText(String.valueOf(ap.normalApp.size()));
+//        TextView dng = findViewById(R.id.dngTxt);
+//        dng.setText(String.valueOf(ap.dangerousApp.size()));
+//        TextView sign = findViewById(R.id.signTxt);
+//        sign.setText(String.valueOf(ap.signatureApp.size()));
     }
 
     public void appScore(View view) {
-        AppPermissions ap = new AppPermissions();
-        ap.getAllApps();
-        int sc =ap.evaluateSystem();
-        String scoreApp = "Application score: "+String.valueOf(sc);
-
-        TextView score = findViewById(R.id.appScoreTxt);
-        score.setText(scoreApp);
+//        AppPermissions ap = new AppPermissions();
+//        ap.getAllApps();
+//        int sc =ap.evaluateSystem();
+//        String scoreApp = "Application score: "+String.valueOf(sc);
+//
+//        TextView score = findViewById(R.id.appScoreTxt);
+//        score.setText(scoreApp);
     }
 }

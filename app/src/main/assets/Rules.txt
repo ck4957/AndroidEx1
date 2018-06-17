@@ -1,4 +1,19 @@
-rule a_b_c if a = 1 & b = 2 & f = 5 then c = 3
-rule d_e_f if d = 5 & e = 4 then f = 9
-rule name3 if a = 2 then c = 2
-rule name4 if a = 0 & b = -1 then c = -1
+rule DEV_LOCK if dev_lock = Yes then score = 0
+rule DEV_LOCK if dev_lock = No then score = 1
+rule DEV_VER if dev_ver = 7.1 then score = 2
+rule DEV_VER if dev_ver = 8.0 then score = 1
+rule DEV_VER if dev_ver = 8.1 then score = 0
+rule DEV_LOCATION if dev_location = Yes then score = 1
+rule DEV_LOCATION if dev_location = No then score = 0
+rule LOCK_TIMEOUT if lock_timeout = 15 sec then score = 0
+rule LOCK_TIMEOUT if lock_timeout = 30 sec then score = 1
+rule LOCK_TIMEOUT if lock_timeout = >60 sec then score = 2
+rule SEC_PATCH if sec_patch = within 3 months then score = 0
+rule SEC_PATCH if sec_patch = within 6 months then score = 1
+rule SEC_PATCH if sec_patch = more than 6 months then score = 2
+rule THIRD_PARTYAPPS if third_partyapps = >3 then score = 0
+rule THIRD_PARTYAPPS if third_partyapps = >5 then score = 1
+rule THIRD_PARTYAPPS if third_partyapps = >7 then score = 2
+rule DEV_MODE if dev_mode = ON then score = 1
+rule DEV_MODE if dev_mode = OFF then score = 0
+

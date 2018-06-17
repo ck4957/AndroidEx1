@@ -9,7 +9,7 @@
 
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/radioGroup"
+        android:id="@+id/devLock_RG"
         android:layout_width="370dp"
         android:layout_height="41dp"
         android:layout_marginEnd="8dp"
@@ -45,7 +45,7 @@
     </RadioGroup>
 
     <RadioGroup
-        android:id="@+id/DevVer"
+        android:id="@+id/DevVer_RG"
         android:layout_width="372dp"
         android:layout_height="45dp"
         android:layout_marginEnd="8dp"
@@ -54,7 +54,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+        app:layout_constraintTop_toBottomOf="@+id/devLock_RG">
 
         <TextView
             android:id="@+id/txtScore_deviceVersion"
@@ -91,7 +91,7 @@
     </RadioGroup>
 
     <RadioGroup
-        android:id="@+id/DeviceLocationRadio"
+        android:id="@+id/DeviceLocation_RG"
         android:layout_width="372dp"
         android:layout_height="45dp"
         android:layout_marginEnd="8dp"
@@ -100,7 +100,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DevVer">
+        app:layout_constraintTop_toBottomOf="@+id/DevVer_RG">
 
         <TextView
             android:id="@+id/devLocation"
@@ -128,13 +128,13 @@
     </RadioGroup>
 
     <RadioGroup
-        android:id="@+id/LockTimeOutRadio"
+        android:id="@+id/LockTimeOut_RG"
         android:layout_width="162dp"
         android:layout_height="134dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DeviceLocationRadio">
+        app:layout_constraintTop_toBottomOf="@+id/DeviceLocation_RG">
 
         <TextView
             android:id="@+id/txtScore_lockTimeout"
@@ -149,7 +149,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:onClick="onRadioButtonDeviceTimeout"
-            android:text=" = 15 sec" />
+            android:text="15 sec" />
 
         <RadioButton
             android:id="@+id/timeout2"
@@ -157,7 +157,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:onClick="onRadioButtonDeviceTimeout"
-            android:text=" = 30 sec" />
+            android:text="30 sec" />
 
         <RadioButton
             android:id="@+id/timeout3"
@@ -165,7 +165,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:onClick="onRadioButtonDeviceTimeout"
-            android:text=" >60 sec" />
+            android:text=">60 sec" />
 
     </RadioGroup>
 
@@ -176,7 +176,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DeviceLocationRadio">
+        app:layout_constraintTop_toBottomOf="@+id/DeviceLocation_RG">
 
         <TextView
             android:id="@+id/txtScore_securityPatch"
@@ -297,15 +297,24 @@
         android:id="@+id/ButtonToAppScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:text="NEXT"
-        android:textStyle="bold"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:onClick="buttonForAppScreen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.971"
+        android:text="START"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DeveloperModeRadio" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="resetAllQuestions"
+        android:text="RESET"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ButtonToAppScreen"
         app:layout_constraintTop_toBottomOf="@+id/DeveloperModeRadio" />
 
 </android.support.constraint.ConstraintLayout>

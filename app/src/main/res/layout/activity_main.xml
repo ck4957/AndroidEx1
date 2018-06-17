@@ -8,25 +8,6 @@
     tools:context=".MainActivity"
     android:background="@drawable/as4">
 
-
-    <!--<TextView-->
-        <!--android:id="@+id/homeText"-->
-        <!--android:layout_width="349dp"-->
-        <!--android:layout_height="37dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:layout_marginEnd="28dp"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginTop="8dp"-->
-        <!--android:text="Hit button to evaluate system"-->
-        <!--android:textColor="#FFFF"-->
-        <!--android:textSize="25sp"-->
-        <!--android:textStyle="bold"-->
-        <!--app:layout_constraintBottom_toTopOf="@+id/homeButton"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintVertical_bias="0.97" />-->
-
     <Button
         android:id="@+id/homeButton"
         style="@android:style/Widget.Button.Toggle"
@@ -42,4 +23,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

@@ -20,8 +20,8 @@ public class Rule
     public List<Condition> conditions;
     public Action action;
 
-    public Rule(){
-        this.rule_name = null;
+    public Rule(String name){
+        this.rule_name = name;
         this.conditions = new ArrayList<>();
         this.action = new Action();
     }
@@ -30,9 +30,9 @@ public class Rule
     {
         public String cond_name;
         public String cond_val;
-        public Condition(){
-            this.cond_val = null;
-            this.cond_name = null;
+        public Condition(String cond_name, String cond_val){
+            this.cond_name = cond_name;
+            this.cond_val = cond_val;
         }
     }
 
@@ -61,49 +61,45 @@ public class Rule
         List<String> lines = ReadRules();
         List<Rule> rules = new ArrayList<>();
 
-        for (String line: lines) {
-            if(line.startsWith("rule")){
-                Rule newRule = new Rule();
-                //Get Rule Name
-                int secondSpace = StringUtils.ordinalIndexOf(line," ",2);
-                newRule.rule_name = line.substring(line.indexOf(" ")+1,secondSpace);
-                //newRule.conditions.add();
-                //List<Rule.Condition> cond_list = new ArrayList<>();
-                String conditions = StringUtils.substringBetween(line,"if "," then");
+        try {
+            for (String line : lines) {
+                if (line.startsWith("rule")) {
+                    //Get Rule Name
+                    int secondSpace = StringUtils.ordinalIndexOf(line, " ", 2);
+                    String rule_name = line.substring(line.indexOf(" ") + 1, secondSpace);
+                    Rule newRule = new Rule(rule_name);
 
-                if(conditions.contains("&")){
-                    String[] temp_condn_list = conditions.split("&");
+                    //List<Rule.Condition> cond_list = new ArrayList<>();
+                    String conditions = StringUtils.substringBetween(line, "if ", " then");
 
-                    for (String condition:temp_condn_list) {
-                        Rule.Condition eachCondition = newRule.new Condition();
-                        eachCondition.cond_name =  condition.split("=")[0].trim();
-                        eachCondition.cond_val = condition.split("=")[1].trim();
+                    if (conditions.contains("&&")) {
+                        // Multiple Conditions
+                        String[] temp_condn_list = conditions.split("&&");
+
+                        for (String condition : temp_condn_list) {
+                            String cond_name =condition.split("=")[0].trim();
+                            String cond_val = condition.split("=")[1].trim();
+                            Rule.Condition eachCondition = newRule.new Condition(cond_name,cond_val);
+                            newRule.conditions.add(eachCondition);
+                        }
+                    } else {
+                        //only one condtion
+                        String cond_name =conditions.split("=")[0].trim();
+                        String cond_val = conditions.split("=")[1].trim();
+                        Rule.Condition eachCondition = newRule.new Condition(cond_name,cond_val);
+
                         newRule.conditions.add(eachCondition);
-                    }
-                }
-                else{
-                    //only one condtion
-                    Rule.Condition eachCondition = newRule.new Condition();
-                    eachCondition.cond_name =  conditions.split("=")[0].trim();
-                    eachCondition.cond_val = conditions.split("=")[1].trim();
-                    //cond_obj.add(eachCondition);
-                    newRule.conditions.add(eachCondition);
 
+                    }
+                    //Get the action score
+                    newRule.action.score = Integer.parseInt(StringUtils.substringAfterLast(line, "=").trim());
+                    rules.add(newRule);
                 }
-                //Get the action score
-                newRule.action.score = Integer.parseInt(StringUtils.substringAfterLast(line,"=").trim());
-                rules.add(newRule);
             }
         }
-
-//        for(Rule rule:rules){
-//            Log.d("rule",rule.rule_name+" "
-//                    +String.valueOf(rule.action.score));
-//            for(Rule.Condition cond:rule.conditions){
-//                Log.d("Cond",cond.cond_name+" "
-//                        +cond.cond_val+" ");
-//            }
-//        }
+        catch (Exception e){
+            Log.e("EXCEPTION","Error in Parsing Rules",e);
+        }
         return rules;
 
     }

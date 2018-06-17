@@ -1,12 +1,12 @@
 package com.example.chiragkular.androidex1;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,126 +14,119 @@ import java.util.List;
 
 public class questions extends AppCompatActivity {
 
+    // Rule Names (RL)
+    final String DEV_LOCK_RL = "DEV_LOCK";
+    final String DEV_LOCK_TYPE_RL = "DEV_LOCK_TYPE";
+    final String LOCK_TIMEOUT_RL = "LOCK_TIMEOUT";
+    final String DEV_VER_RL = "DEV_VER";
+    final String SEC_PATCH_RL = "SEC_PATCH";
+    final String DEV_MODE_RL = "DEV_MODE";
+    final String THIRD_PARTYAPP_RL = "THIRD_PARTYAPPS";
+    final String DEV_LOC_RL = "DEV_LOCATION";
+
+    final String DL_LT_SLT_RL = "DL_LT_SLT";
+    final String DL_LT_RL = "DL_LT";
+    final String DL_SLT_RL = "DL_SLT";
+    final String DV_SP_RL = "DV_SP";
+    final String DM_TP_RL = "DM_TP";
+
+    // Condition Names (CN)
+    final String DEV_LOCK_CN = "dev_lock";
+    final String DEV_LOCK_TYPE_CN = "dev_LockType";
+    final String LOCK_TIMEOUT_CN = "lock_timeout";
+    final String DEV_VER_CN = "dev_ver";
+    final String SEC_PATCH_CN = "sec_patch";
+    final String DEV_MODE_CN = "dev_mode";
+    final String THIRD_PARTYAPP_CN = "third_partyapps";
+    final String DEV_LOC_CN = "dev_location";
+
+
+    // Radio Groups (RG)
+    RadioGroup dev_Lock_RG;
+    RadioGroup lock_type_RG;
+    RadioGroup lock_timeout_RG;
+
+    RadioGroup devVer_RG;
+    RadioGroup sec_patch_RG;
+
+    RadioGroup devMode_RG;
+    RadioGroup third_party_RG;
+
+    RadioGroup devLoc_RG;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
-        //disableRadioGroup((RadioGroup) findViewById(R.id.LockTimeOut_RG));
-        //disableRadioGroup((RadioGroup) findViewById(R.id.SecurityPatchRadio));
+        dev_Lock_RG=(RadioGroup)findViewById(R.id.devLock_RG);
+        lock_type_RG=(RadioGroup)findViewById(R.id.lockType_RG);
+        lock_timeout_RG=(RadioGroup)findViewById(R.id.LockTimeOut_RG);
+
+        devVer_RG=(RadioGroup)findViewById(R.id.DevVer_RG);
+        sec_patch_RG=(RadioGroup)findViewById(R.id.SecurityPatchRadio);
+
+        devMode_RG=(RadioGroup)findViewById(R.id.DeveloperModeRadio);
+        third_party_RG=(RadioGroup)findViewById(R.id.NumberOfThirdPartyApp);
+
+        devLoc_RG=(RadioGroup)findViewById(R.id.DeviceLocation_RG);
     }
-    /*
-    public void onRadioButtonClicked(View view) {
+
+    public void evaluateButton(View view) {
+
+        List<Rule> Rules = null;
+        try {
+            Rules = Rule.parseRules();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        List<Rule> Facts = createFactsFromUserInput();
+        print_PermAppCategoryList();
+        int score = calculateScore(Rules, Facts);
+        printOverallAppScore(score);
+
+    }
+
+
+    public void onRadioButtonClickedDevLock(View view) {
         boolean checked = ((RadioButton) view).isChecked();
 
         // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.deviceYes:
-                if (checked)
-                    Log.e("lock: Yes"," Score:0");
+                if (checked) {
+                    EnableRadioGroup(lock_type_RG,true);
+                    EnableRadioGroup(lock_timeout_RG,true);
+                }
                 break;
             case R.id.deviceNo:
-                if (checked)
-                    Log.e("lock: No"," Score:2");
+                if (checked) {
+                    EnableRadioGroup(lock_type_RG, false);
+                    EnableRadioGroup(lock_timeout_RG, false);
+                }
                 break;
         }
 
     }
+
 
     public void onRadioButtonDeviceVer(View view) {
         boolean checked = ((RadioButton) view).isChecked();
 
         // Check which radio button was clicked
         switch(view.getId()) {
-            case R.id.ver1:
+            case R.id.ver71:
                 if (checked)
-                    Log.e("version: Yes"," Score:2");
+                    EnableRadioGroup(sec_patch_RG,true);
                 break;
-            case R.id.ver2:
+            case R.id.ver80:
                 if (checked)
-                    Log.e("version: No"," Score:1");
+                    EnableRadioGroup(sec_patch_RG,true);
                 break;
-            case R.id.ver3:
-                if (checked)
-                    Log.e("version: No"," Score:0");
-                break;
-        }
-
-    }
-
-    public void onRadioButtonDeviceLocation(View view) {
-
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.locYes:
-                if (checked)
-                    Log.e("location On: "," Score:0");
-                break;
-            case R.id.locNo:
-                if (checked)
-                    Log.e("location Off: "," Score:2");
-                break;
-        }
-
-    }
-
-    public void onRadioButtonDeviceTimeout(View view) {
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.timeout1:
-                if (checked)
-                    Log.e("timeout>15 sec"," Score:0");
-                break;
-            case R.id.timeout2:
-                if (checked)
-                    Log.e("timeout >30 sec"," Score:1");
-                break;
-            case R.id.timeout3:
-                if (checked)
-                    Log.e("timeout > 60sec"," Score:2");
-                break;
-        }
-    }
-
-    public void onRadioButtonSecurityPatch(View view) {
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.sec3Month:
-                if (checked)
-                    Log.e("sec less than 3 "," Score:0");
-                break;
-            case R.id.sec6Month:
-                if (checked)
-                    Log.e("sec less than 6"," Score:1");
-                break;
-            case R.id.sec12Month:
-                if (checked)
-                    Log.e("sec less than 12"," Score:2");
-                break;
-        }
-    }
-
-    public void onRadioButtonThirdPartyApp(View view) {
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.thirdParty3:
-                if (checked)
-                    Log.e("apps > 3 "," Score:0");
-                break;
-            case R.id.thirdParty5:
-                if (checked)
-                    Log.e("apps > 5 "," Score:1");
-                break;
-            case R.id.thirdParty7:
-                if (checked)
-                    Log.e("apps > 7 "," Score:2");
+            case R.id.ver81:
+                if (checked){
+                    EnableRadioGroup(sec_patch_RG,false);
+                }
                 break;
         }
 
@@ -146,32 +139,19 @@ public class questions extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.devmodeOff:
                 if (checked)
-                    Log.e("dev mode off "," Score:0");
+                    EnableRadioGroup(third_party_RG,false);
+                    //Log.e("dev mode off "," Score:0");
                 break;
             case R.id.devmodeOn:
                 if (checked)
-                    Log.e("dev mode on "," Score:2");
+                    EnableRadioGroup(third_party_RG,true);
+                    //Log.e("dev mode on "," Score:2");
                 break;
         }
     }
-    */
-    public void buttonForAppScreen(View view) {
-        Intent intent = new Intent(this, listApp.class);
-        startActivity(intent);
 
 
-        List<Rule> Rules = null;
-        try {
-            Rules = Rule.parseRules();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        List<Rule> Facts = createFactsFromUserInput();
-        calculateScore(Rules, Facts);
-    }
-
-    public void calculateScore(List<Rule> Rules, List<Rule> Facts){
+    public int calculateScore(List<Rule> Rules, List<Rule> Facts){
         int total_score = 0;
         for(Rule fact:Facts) {
             for (Rule rule : Rules) {
@@ -181,152 +161,225 @@ public class questions extends AppCompatActivity {
                             if (fact_cond.cond_name.equals(rule_cond.cond_name)
                                 && fact_cond.cond_val.equals(rule_cond.cond_val))
                                 total_score += rule.action.score;
-
                         }
                     }
                 }
             }
         }
-        Log.d("Score:",String.valueOf(total_score));
 
+        Log.d("Score:",String.valueOf(total_score));
+        return total_score;
     }
+
 
     public List<Rule> createFactsFromUserInput(){
         List<Rule> facts = new ArrayList<>();
 
-        RadioGroup rg1=(RadioGroup)findViewById(R.id.devLock_RG);
-        RadioGroup rg2=(RadioGroup)findViewById(R.id.DevVer_RG);
-        RadioGroup rg3=(RadioGroup)findViewById(R.id.DeviceLocation_RG);
-        RadioGroup rg4=(RadioGroup)findViewById(R.id.LockTimeOut_RG);
-        RadioGroup rg5=(RadioGroup)findViewById(R.id.SecurityPatchRadio);
-        RadioGroup rg6=(RadioGroup)findViewById(R.id.NumberOfThirdPartyApp);
-        RadioGroup rg7=(RadioGroup)findViewById(R.id.DeveloperModeRadio);
 
-        if(rg1.getCheckedRadioButtonId() != -1){
+        if(dev_Lock_RG.getCheckedRadioButtonId() != -1){
+            int btnId = dev_Lock_RG.getCheckedRadioButtonId();
+            String value1 = ((RadioButton)findViewById(btnId)).getText().toString();
 
-            int checkedRadioId = rg1.getCheckedRadioButtonId();
-            String value = ((RadioButton)findViewById(checkedRadioId)).getText().toString();
+            if(btnId == R.id.deviceYes){
+                if(lock_timeout_RG.getCheckedRadioButtonId() != -1 &&
+                        lock_type_RG.getCheckedRadioButtonId() != -1){
+                    // Get DEV_Lock Checked value
 
-            rg2.setEnabled(true);
-            Rule newFact = new Rule();
-            newFact.rule_name = "DEV_LOCK";
-            Rule.Condition condition = newFact.new Condition();
-            condition.cond_name = "dev_lock";
-            condition.cond_val = value;
-            newFact.conditions.add(condition);
-            facts.add(newFact);
+                    int checkedRadioId2 = lock_type_RG.getCheckedRadioButtonId();
+                    String value2 = ((RadioButton)findViewById(checkedRadioId2)).getText().toString();
+
+                    int checkedRadioId3 = lock_timeout_RG.getCheckedRadioButtonId();
+                    String value3 = ((RadioButton)findViewById(checkedRadioId3)).getText().toString();
+
+                    Rule newFact = new Rule(DL_LT_SLT_RL);
+
+                    Rule.Condition condition1 = newFact.new Condition(DEV_LOC_CN, value1);
+                    Rule.Condition condition2 = newFact.new Condition(DEV_LOCK_TYPE_CN, value2);
+                    Rule.Condition condition3 = newFact.new Condition(LOCK_TIMEOUT_CN, value3);
+
+                    newFact.conditions.add(condition1);
+                    newFact.conditions.add(condition2);
+                    newFact.conditions.add(condition3);
+                    facts.add(newFact);
+                }
+                else if(lock_type_RG.getCheckedRadioButtonId() != -1){
+                    int checkedRadioId2 = lock_type_RG.getCheckedRadioButtonId();
+                    String value2 = ((RadioButton)findViewById(checkedRadioId2)).getText().toString();
+
+                    Rule newFact = new Rule(DL_LT_RL);
+
+                    Rule.Condition condition1 = newFact.new Condition(DEV_LOC_CN, value1);
+                    Rule.Condition condition2 = newFact.new Condition(DEV_LOCK_TYPE_CN, value2);
+
+                    newFact.conditions.add(condition1);
+                    newFact.conditions.add(condition2);
+                    facts.add(newFact);
+
+
+                }
+                else if(lock_timeout_RG.getCheckedRadioButtonId() != -1){
+                    int checkedRadioId3 = lock_timeout_RG.getCheckedRadioButtonId();
+                    String value3 = ((RadioButton)findViewById(checkedRadioId3)).getText().toString();
+
+                    Rule newFact = new Rule(DL_SLT_RL);
+                    Rule.Condition condition1 = newFact.new Condition(DEV_LOC_CN, value1);
+                    Rule.Condition condition3 = newFact.new Condition(LOCK_TIMEOUT_CN, value3);
+                    newFact.conditions.add(condition1);
+                    newFact.conditions.add(condition3);
+                    facts.add(newFact);
+
+                }
+            }
+            else //(dev_Lock_RG.getCheckedRadioButtonId() == R.id.deviceNo)
+                AddSingleNewFact(dev_Lock_RG, facts, DEV_LOCK_RL, DEV_LOCK_CN);
         }
 
-        if(rg2.getCheckedRadioButtonId() != -1){
+//        if(lock_timeout_RG.getCheckedRadioButtonId() != -1){
+//            AddSingleNewFact(lock_timeout_RG, facts, LOCK_TIMEOUT_RL, LOCK_TIMEOUT_CN);
+//        }
+//
+//        if(lock_type_RG.getCheckedRadioButtonId() != -1){
+//            AddSingleNewFact(lock_type_RG, facts, DEV_LOCK_TYPE_RL, DEV_LOCK_TYPE_CN);
+//        }
 
-            int checkedRadioId = rg2.getCheckedRadioButtonId();
-            String value = ((RadioButton)findViewById(checkedRadioId)).getText().toString();
+        if(devVer_RG.getCheckedRadioButtonId() != -1){
+            int btnId = devVer_RG.getCheckedRadioButtonId();
+            String value1 = ((RadioButton)findViewById(btnId)).getText().toString();
 
-            Rule newFact = new Rule();
-            newFact.rule_name = "DEV_VER";
-            Rule.Condition condition = newFact.new Condition();
-            condition.cond_name = "dev_ver";
-            condition.cond_val = value;
-            newFact.conditions.add(condition);
-            facts.add(newFact);
+            if(btnId == R.id.ver71 || btnId == R.id.ver80) {
+                if(sec_patch_RG.getCheckedRadioButtonId() != -1) {
+                    int checkedRadioId2 = sec_patch_RG.getCheckedRadioButtonId();
+                    String value2 = ((RadioButton)findViewById(checkedRadioId2)).getText().toString();
+                    Rule newFact = new Rule(DV_SP_RL);
+
+                    Rule.Condition condition1 = newFact.new Condition(DEV_VER_CN, value1);
+                    Rule.Condition condition2 = newFact.new Condition(SEC_PATCH_CN, value2);
+
+                    newFact.conditions.add(condition1);
+                    newFact.conditions.add(condition2);
+                    facts.add(newFact);
+                }
+            }
+            else
+                AddSingleNewFact(devVer_RG, facts, DEV_VER_RL, DEV_VER_CN);
         }
 
-        if(rg3.getCheckedRadioButtonId() != -1){
+//        if(sec_patch_RG.getCheckedRadioButtonId() != -1){
+//            AddSingleNewFact(sec_patch_RG, facts, SEC_PATCH_RL, SEC_PATCH_CN);
+//        }
 
-            int checkedRadioId = rg3.getCheckedRadioButtonId();
-            String value = ((RadioButton)findViewById(checkedRadioId)).getText().toString();
+        if(devMode_RG.getCheckedRadioButtonId() != -1){
+            int btnId = devMode_RG.getCheckedRadioButtonId();
+            String value1 = ((RadioButton)findViewById(btnId)).getText().toString();
 
-            Rule newFact = new Rule();
-            newFact.rule_name = "DEV_LOCATION";
-            Rule.Condition condition = newFact.new Condition();
-            condition.cond_name = "dev_location";
-            condition.cond_val = value;
-            newFact.conditions.add(condition);
-            facts.add(newFact);
+            if(btnId == R.id.devmodeOn) {
+                if(third_party_RG.getCheckedRadioButtonId() != -1) {
+                    int checkedRadioId2 = third_party_RG.getCheckedRadioButtonId();
+                    String value2 = ((RadioButton)findViewById(checkedRadioId2)).getText().toString();
+                    Rule newFact = new Rule(DM_TP_RL);
+
+                    Rule.Condition condition1 = newFact.new Condition(DEV_MODE_CN, value1);
+                    Rule.Condition condition2 = newFact.new Condition(THIRD_PARTYAPP_CN, value2);
+
+                    newFact.conditions.add(condition1);
+                    newFact.conditions.add(condition2);
+                    facts.add(newFact);
+                }
+            }
+            else
+                AddSingleNewFact(devMode_RG, facts, DEV_MODE_RL, DEV_MODE_CN);
         }
 
-        if(rg4.getCheckedRadioButtonId() != -1){
+//        if(third_party_RG.getCheckedRadioButtonId() != -1){
+//            AddSingleNewFact(third_party_RG, facts, THIRD_PARTYAPP_RL, THIRD_PARTYAPP_CN);
+//        }
 
-            int checkedRadioId = rg4.getCheckedRadioButtonId();
-            String value = ((RadioButton)findViewById(checkedRadioId)).getText().toString();
-
-            Rule newFact = new Rule();
-            newFact.rule_name = "LOCK_TIMEOUT";
-            Rule.Condition condition = newFact.new Condition();
-            condition.cond_name = "lock_timeout";
-            condition.cond_val = value;
-            newFact.conditions.add(condition);
-            facts.add(newFact);
+        if(devLoc_RG.getCheckedRadioButtonId() != -1){
+            AddSingleNewFact(devLoc_RG, facts, DEV_LOC_RL, DEV_LOC_CN);
         }
 
-        if(rg5.getCheckedRadioButtonId() != -1){
-
-            int checkedRadioId = rg5.getCheckedRadioButtonId();
-            String value = ((RadioButton)findViewById(checkedRadioId)).getText().toString();
-
-            Rule newFact = new Rule();
-            newFact.rule_name = "SEC_PATCH";
-            Rule.Condition condition = newFact.new Condition();
-            condition.cond_name = "sec_patch";
-            condition.cond_val = value;
-            newFact.conditions.add(condition);
-            facts.add(newFact);
-        }
-
-
-        if(rg6.getCheckedRadioButtonId() != -1){
-
-            int checkedRadioId = rg6.getCheckedRadioButtonId();
-            String value = ((RadioButton)findViewById(checkedRadioId)).getText().toString();
-
-            Rule newFact = new Rule();
-            newFact.rule_name = "THIRD_PARTYAPPS";
-            Rule.Condition condition = newFact.new Condition();
-            condition.cond_name = "third_partyapps";
-            condition.cond_val = value;
-            newFact.conditions.add(condition);
-            facts.add(newFact);
-        }
-
-        if(rg7.getCheckedRadioButtonId() != -1){
-
-            int checkedRadioId = rg7.getCheckedRadioButtonId();
-            String value = ((RadioButton)findViewById(checkedRadioId)).getText().toString();
-
-            Rule newFact = new Rule();
-            newFact.rule_name = "DEV_MODE";
-            Rule.Condition condition = newFact.new Condition();
-            condition.cond_name = "dev_mode";
-            condition.cond_val = value;
-            newFact.conditions.add(condition);
-            facts.add(newFact);
-        }
         return facts;
     }
 
-    public void disableRadioGroup(RadioGroup rg){
-        //RadioGroup rg4=(RadioGroup)findViewById(R.id.LockTimeOut_RG);
-        //RadioGroup rg5=(RadioGroup)findViewById(R.id.SecurityPatchRadio);
+    public void EnableRadioGroup(RadioGroup rg, boolean enableFlag){
         for (int i = 0; i < rg.getChildCount(); i++) {
-            rg.getChildAt(i).setEnabled(false);
+            rg.getChildAt(i).setEnabled(enableFlag);
         }
     }
 
+    public void AddSingleNewFact(RadioGroup rg, List<Rule> Facts, String rule_name, String cond_name){
+        int checkedRadioId = rg.getCheckedRadioButtonId();
+        String value = ((RadioButton)findViewById(checkedRadioId)).getText().toString();
+        Rule newFact = new Rule(rule_name);
+        Rule.Condition condition = newFact.new Condition(cond_name,value);
+        newFact.conditions.add(condition);
+        Facts.add(newFact);
+
+    }
+
     public void resetAllQuestions(View view){
-        RadioGroup rg1=(RadioGroup)findViewById(R.id.devLock_RG);
-        RadioGroup rg2=(RadioGroup)findViewById(R.id.DevVer_RG);
-        RadioGroup rg3=(RadioGroup)findViewById(R.id.DeviceLocation_RG);
-        RadioGroup rg4=(RadioGroup)findViewById(R.id.LockTimeOut_RG);
-        RadioGroup rg5=(RadioGroup)findViewById(R.id.SecurityPatchRadio);
-        RadioGroup rg6=(RadioGroup)findViewById(R.id.NumberOfThirdPartyApp);
-        RadioGroup rg7=(RadioGroup)findViewById(R.id.DeveloperModeRadio);
-        rg1.clearCheck();
-        rg2.clearCheck();
-        rg3.clearCheck();
-        rg4.clearCheck();
-        rg5.clearCheck();
-        rg6.clearCheck();
-        rg7.clearCheck();
+        dev_Lock_RG.clearCheck();
+        EnableRadioGroup(dev_Lock_RG,true);
+        lock_type_RG.clearCheck();
+        EnableRadioGroup(lock_type_RG,true);
+        lock_timeout_RG.clearCheck();
+        EnableRadioGroup(lock_timeout_RG,true);
+        devVer_RG.clearCheck();
+        EnableRadioGroup(devVer_RG,true);
+        sec_patch_RG.clearCheck();
+        EnableRadioGroup(sec_patch_RG,true);
+        devMode_RG.clearCheck();
+        EnableRadioGroup(devMode_RG,true);
+        third_party_RG.clearCheck();
+        EnableRadioGroup(third_party_RG,true);
+        devLoc_RG.clearCheck();
+        EnableRadioGroup(devLoc_RG,true);
+        TextView norm = findViewById(R.id.txt_normalApps);
+        norm.setText("0");
+        TextView dng = findViewById(R.id.txt_dangerApps);
+        dng.setText("0");
+        TextView sign = findViewById(R.id.txt_sigApps);
+        sign.setText("0");
+        TextView score_txt = findViewById(R.id.txt_ScoreVal);
+        score_txt.setText("0");
+    }
+
+    public void print_PermAppCategoryList()
+    {
+        AppPermissions ap = new AppPermissions();
+        ap.getAllApps();
+        ap.appClassification();
+//        ArrayAdapter adapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_list_item_1, ap.normalApp);
+//
+//        ListView listView = (ListView) findViewById(R.id.listViewApp);
+//        listView.setAdapter(adapter);
+//        ArrayAdapter adapter1 = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_list_item_1, ap.dangerousApp);
+//
+//        ListView listView1 = (ListView) findViewById(R.id.dangerAppView);
+//        listView1.setAdapter(adapter1);
+        //Score
+//        AppPermissions ap = new AppPermissions();
+//        ap.getAllApps();
+//        int sc =ap.evaluateSystem();
+//        String scoreApp = "Application score: "+String.valueOf(sc);
+//
+//        TextView score = findViewById(R.id.appScoreTxt);
+//        score.setText(scoreApp);
+
+        TextView norm = findViewById(R.id.txt_normalApps);
+        norm.setText(String.valueOf(ap.normalApp.size()));
+        TextView dng = findViewById(R.id.txt_dangerApps);
+        dng.setText(String.valueOf(ap.dangerousApp.size()));
+        TextView sign = findViewById(R.id.txt_sigApps);
+        sign.setText(String.valueOf(ap.signatureApp.size()));
+    }
+    public void printOverallAppScore(int score) {
+        int total_score=score;
+        TextView score_txt = findViewById(R.id.txt_ScoreVal);
+        score_txt.setText(String.valueOf(total_score));
+
     }
 
 }

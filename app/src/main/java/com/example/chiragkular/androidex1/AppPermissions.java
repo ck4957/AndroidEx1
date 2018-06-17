@@ -77,7 +77,7 @@ public class AppPermissions {
                 appList.add(appDetails);
             }
             catch(PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
             }
         }
 

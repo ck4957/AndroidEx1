@@ -22,11 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".DisplayMessageActivity"
-            android:parentActivityName=".MainActivity" />
         <activity android:name=".HomePage" />
-        <activity android:name=".listApp" />
         <activity android:name=".questions"></activity>
     </application>
 

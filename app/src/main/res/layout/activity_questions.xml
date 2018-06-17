@@ -2,9 +2,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#F5F5F5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F5F5F5"
     tools:context=".questions">
 
 
@@ -33,6 +33,7 @@
             android:id="@+id/deviceYes"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
+            android:onClick="onRadioButtonClickedDevLock"
             android:text="Yes"
             android:textSize="12sp" />
 
@@ -42,6 +43,7 @@
             android:layout_height="32dp"
             android:checked="false"
             android:duplicateParentState="false"
+            android:onClick="onRadioButtonClickedDevLock"
             android:text="No"
             android:textSize="12sp" />
     </RadioGroup>
@@ -52,10 +54,11 @@
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/devLock_RG">
+        app:layout_constraintTop_toBottomOf="@+id/lockType_RG">
 
         <TextView
             android:id="@+id/txtScore_lockTimeout"
@@ -67,17 +70,17 @@
             android:textSize="12sp" />
 
         <RadioButton
-            android:id="@+id/timeout2"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:isScrollContainer="false"
-            android:text="30 sec" />
-
-        <RadioButton
             android:id="@+id/timeout1"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
+            android:isScrollContainer="false"
             android:text="15 sec" />
+
+        <RadioButton
+            android:id="@+id/timeout2"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="30 sec" />
 
         <RadioButton
             android:id="@+id/timeout3"
@@ -91,9 +94,13 @@
         android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@+id/LockTimeOut_RG"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LockTimeOut_RG" />
 
 
     <RadioGroup
@@ -106,7 +113,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LockTimeOut_RG">
+        app:layout_constraintTop_toBottomOf="@+id/view2">
 
         <TextView
             android:id="@+id/txtScore_deviceVersion"
@@ -118,21 +125,24 @@
             android:textSize="12sp" />
 
         <RadioButton
-            android:id="@+id/ver1"
+            android:id="@+id/ver71"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
+            android:onClick="onRadioButtonDeviceVer"
             android:text="7.1" />
 
         <RadioButton
-            android:id="@+id/ver2"
+            android:id="@+id/ver80"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
+            android:onClick="onRadioButtonDeviceVer"
             android:text="8.0" />
 
         <RadioButton
-            android:id="@+id/ver3"
+            android:id="@+id/ver81"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
+            android:onClick="onRadioButtonDeviceVer"
             android:text="8.1" />
     </RadioGroup>
 
@@ -180,9 +190,13 @@
         android:id="@+id/view3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@+id/SecurityPatchRadio"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SecurityPatchRadio" />
 
 
     <RadioGroup
@@ -209,12 +223,14 @@
             android:id="@+id/devmodeOn"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
+            android:onClick="onRadioButtonDeveloperMode"
             android:text="On" />
 
         <RadioButton
             android:id="@+id/devmodeOff"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
+            android:onClick="onRadioButtonDeveloperMode"
             android:text="Off" />
 
     </RadioGroup>
@@ -243,19 +259,19 @@
             android:id="@+id/thirdParty3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" >3" />
+            android:text=">3" />
 
         <RadioButton
             android:id="@+id/thirdParty5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" >5" />
+            android:text=">5" />
 
         <RadioButton
             android:id="@+id/thirdParty7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" >7" />
+            android:text=">7" />
 
     </RadioGroup>
 
@@ -263,9 +279,12 @@
         android:id="@+id/view4"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@+id/NumberOfThirdPartyApp"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NumberOfThirdPartyApp" />
 
     <RadioGroup
         android:id="@+id/DeviceLocation_RG"
@@ -301,26 +320,207 @@
 
     </RadioGroup>
 
+    <View
+        android:id="@+id/view5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DeviceLocation_RG" />
+
+    <TextView
+        android:id="@+id/signApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="PROTECTION_SIGNATURE Apps:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_sigApps"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dangerTxt" />
+
+    <TextView
+        android:id="@+id/normApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_row="1"
+        android:text="PROTECTION_NORMAL Apps:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_normalApps"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DeviceLocation_RG" />
+
+    <TextView
+        android:id="@+id/dangerTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_row="2"
+        android:text="PROTECTION_DANGER Apps:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_dangerApps"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/normApp" />
+
     <Button
         android:id="@+id/ButtonToAppScreen"
         android:layout_width="93dp"
         android:layout_height="36dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
-        android:onClick="buttonForAppScreen"
-        android:text="START"
+        android:onClick="evaluateButton"
+        android:text="EVALUATE"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="34dp"
+        android:layout_width="93dp"
+        android:layout_height="36dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:onClick="resetAllQuestions"
         android:text="RESET"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/lockType_RG"
+        android:layout_width="370dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/devLock_RG">
+
+        <TextView
+            android:id="@+id/txt_lockType"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:text="Lock Type?"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/pin_radioBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:text="Pin"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/pattern_radioBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:text="Pattern"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/finger_radioBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:text="FingerPrint" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/txt_normalApps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/normApp"
+        app:layout_constraintTop_toBottomOf="@+id/DeviceLocation_RG" />
+
+    <TextView
+        android:id="@+id/txt_dangerApps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dangerTxt"
+        app:layout_constraintTop_toBottomOf="@+id/txt_normalApps" />
+
+    <TextView
+        android:id="@+id/txt_sigApps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/signApp"
+        app:layout_constraintTop_toBottomOf="@+id/txt_dangerApps" />
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_sigApps" />
+
+    <TextView
+        android:id="@+id/txt_overallScore"
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:text="Overall Score"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+    <TextView
+        android:id="@+id/txt_ScoreVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:text="0"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/txt_overallScore"
+        app:layout_constraintTop_toBottomOf="@+id/view6" />
+
 
 </android.support.constraint.ConstraintLayout>

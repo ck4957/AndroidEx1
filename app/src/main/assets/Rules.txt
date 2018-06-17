@@ -1,5 +1,8 @@
 rule DEV_LOCK if dev_lock = Yes then score = 0
 rule DEV_LOCK if dev_lock = No then score = 1
+rule DEV_LOCK_TYPE if dev_LockType = Pin then score = 1
+rule DEV_LOCK_TYPE if dev_LockType = Pattern then score = 0
+rule DEV_LOCK_TYPE if dev_LockType = FingerPrint then score = 0
 rule DEV_VER if dev_ver = 7.1 then score = 2
 rule DEV_VER if dev_ver = 8.0 then score = 1
 rule DEV_VER if dev_ver = 8.1 then score = 0
@@ -8,15 +11,41 @@ rule DEV_LOCATION if dev_location = No then score = 0
 rule LOCK_TIMEOUT if lock_timeout = 15 sec then score = 0
 rule LOCK_TIMEOUT if lock_timeout = 30 sec then score = 1
 rule LOCK_TIMEOUT if lock_timeout = >60 sec then score = 2
-rule SEC_PATCH if sec_patch = within 3 months then score = 0
-rule SEC_PATCH if sec_patch = within 6 months then score = 1
-rule SEC_PATCH if sec_patch = more than 6 months then score = 2
+rule SEC_PATCH if sec_patch = &lt;3 mos then score = 0
+rule SEC_PATCH if sec_patch = &lt;6 mos then score = 1
+rule SEC_PATCH if sec_patch = &lt;12 mos then score = 2
 rule THIRD_PARTYAPPS if third_partyapps = >3 then score = 0
 rule THIRD_PARTYAPPS if third_partyapps = >5 then score = 1
 rule THIRD_PARTYAPPS if third_partyapps = >7 then score = 2
-rule DEV_MODE if dev_mode = ON then score = 1
-rule DEV_MODE if dev_mode = OFF then score = 0
-rule DL&LT if dev_lock = Yes & lock_timeout = 15 sec then score = 0
-rule DL&LT if dev_lock = Yes & lock_timeout = 30 sec then score = 1
-rule DL&LT if dev_lock = Yes & lock_timeout = >60 sec then score = 2
+rule DEV_MODE if dev_mode = On then score = 1
+rule DEV_MODE if dev_mode = Off then score = 0
+
+rule DL_LT_SLT if dev_lock = Yes && dev_LockType = Pin && LOCK_TIMEOUT == 15 sec then score = 0
+rule DL_LT_SLT if dev_lock = Yes && dev_LockType = Pin && LOCK_TIMEOUT == 30 sec then score = 1
+rule DL_LT_SLT if dev_lock = Yes && dev_LockType = Pin && LOCK_TIMEOUT == >60 sec then score = 2
+rule DL_LT_SLT if dev_lock = Yes && dev_LockType = Pattern && LOCK_TIMEOUT == 15 sec then score = 0
+rule DL_LT_SLT if dev_lock = Yes && dev_LockType = Pattern && LOCK_TIMEOUT == 30 sec then score = 1
+rule DL_LT_SLT if dev_lock = Yes && dev_LockType = Pattern && LOCK_TIMEOUT == >60 sec then score = 1
+rule DL_LT_SLT if dev_lock = Yes && dev_LockType = FingerPrint && LOCK_TIMEOUT == 15 sec then score = 0
+rule DL_LT_SLT if dev_lock = Yes && dev_LockType = FingerPrint && LOCK_TIMEOUT == 30 sec then score = 0
+rule DL_LT_SLT if dev_lock = Yes && dev_LockType = FingerPrint && LOCK_TIMEOUT == >60 sec then score = 1
+
+rule DL_LT if dev_lock = Yes && dev_LockType = Pin then Score = 1
+rule DL_LT if dev_lock = Yes && dev_LockType = Pattern then Score = 1
+rule DL_LT if dev_lock = Yes && dev_LockType = FingerPrint then Score = 0
+
+rule DL_SLT if dev_lock = Yes && LOCK_TIMEOUT == 15 sec then Score = 0
+rule DL_SLT if dev_lock = Yes && LOCK_TIMEOUT == 30 sec then Score = 1
+rule DL_SLT if dev_lock = Yes && LOCK_TIMEOUT == >60 sec then Score = 2
+
+rule DV_SP if dev_ver = 7.1 && sec_patch = &lt;3 mos then score = 2
+rule DV_SP if dev_ver = 7.1 && sec_patch = &lt;6 mos then score = 2
+rule DV_SP if dev_ver = 7.1 && sec_patch = &lt;12 mos then score = 2
+rule DV_SP if dev_ver = 8.0 && sec_patch = &lt;3 mos then score = 1
+rule DV_SP if dev_ver = 8.0 && sec_patch = &lt;6 mos then score = 2
+rule DV_SP if dev_ver = 8.0 && sec_patch = &lt;12 mos then score = 2
+
+rule DM_TP if dev_mode = On && third_partyapps = >3 then score = 1
+rule DM_TP if dev_mode = On && third_partyapps = >5 then score = 2
+rule DM_TP if dev_mode = On && third_partyapps = >7 then score = 2
 

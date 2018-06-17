@@ -49,20 +49,12 @@ public class HomePage extends AppCompatActivity {
         TextView score_deviceVersion = findViewById(R.id.txtScore_deviceVersion);
         score_deviceVersion.setText(String.valueOf(deviceVersion_Score));
 
-        //getAllApps(getApplicationContext());
-//        AppPermissions perm = new AppPermissions();
-//        perm.getAllApps();
-//        perm.print();
-//        Log.e("SystemEvaluation",String.valueOf(perm.evaluateSystem()));
-//
 //        PlayStoreRating psr = new PlayStoreRating();
 //        psr.AppRatingsAnalysis();
 
     }
 
     public void TransitToListApp(View view) {
-        Intent intent = new Intent(this, listApp.class);
-        startActivity(intent);
 
     }
 

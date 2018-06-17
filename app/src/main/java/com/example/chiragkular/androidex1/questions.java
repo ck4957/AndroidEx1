@@ -415,13 +415,13 @@ public class questions extends AppCompatActivity {
             score_txt.setText(String.valueOf(status));
             score_txt.setTextColor(Color.GREEN);
         }
-        else if(total_score<5) {
+        else if(total_score<6) {
             status = MyConstants.MEDRISK;
             score_txt.setText(String.valueOf(status));
             score_txt.setTextColor(Color.BLUE);
 
         }
-        else if(total_score >= 5){
+        else if(total_score >= 6){
             status = MyConstants.HIGHRISK;
             score_txt.setText(String.valueOf(status));
             score_txt.setTextColor(Color.RED);

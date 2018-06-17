@@ -6,8 +6,8 @@ rule DEV_LOCK_TYPE if dev_LockType = FingerPrint then score = 0
 rule DEV_VER if dev_ver = 7.1 then score = 2
 rule DEV_VER if dev_ver = 8.0 then score = 1
 rule DEV_VER if dev_ver = 8.1 then score = 0
-rule DEV_LOCATION if dev_location = Yes then score = 1
-rule DEV_LOCATION if dev_location = No then score = 0
+rule DEV_LOCATION if dev_location = Yes then score = 0
+rule DEV_LOCATION if dev_location = No then score = 2
 rule LOCK_TIMEOUT if lock_timeout = 15 sec then score = 0
 rule LOCK_TIMEOUT if lock_timeout = 30 sec then score = 1
 rule LOCK_TIMEOUT if lock_timeout = >60 sec then score = 2

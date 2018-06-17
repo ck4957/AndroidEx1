@@ -18,7 +18,10 @@ public class questions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
+        //disableRadioGroup((RadioGroup) findViewById(R.id.LockTimeOut_RG));
+        //disableRadioGroup((RadioGroup) findViewById(R.id.SecurityPatchRadio));
     }
+    /*
     public void onRadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
 
@@ -151,7 +154,7 @@ public class questions extends AppCompatActivity {
                 break;
         }
     }
-
+    */
     public void buttonForAppScreen(View view) {
         Intent intent = new Intent(this, listApp.class);
         startActivity(intent);
@@ -166,8 +169,6 @@ public class questions extends AppCompatActivity {
 
         List<Rule> Facts = createFactsFromUserInput();
         calculateScore(Rules, Facts);
-
-
     }
 
     public void calculateScore(List<Rule> Rules, List<Rule> Facts){
@@ -206,6 +207,7 @@ public class questions extends AppCompatActivity {
             int checkedRadioId = rg1.getCheckedRadioButtonId();
             String value = ((RadioButton)findViewById(checkedRadioId)).getText().toString();
 
+            rg2.setEnabled(true);
             Rule newFact = new Rule();
             newFact.rule_name = "DEV_LOCK";
             Rule.Condition condition = newFact.new Condition();
@@ -302,6 +304,14 @@ public class questions extends AppCompatActivity {
         return facts;
     }
 
+    public void disableRadioGroup(RadioGroup rg){
+        //RadioGroup rg4=(RadioGroup)findViewById(R.id.LockTimeOut_RG);
+        //RadioGroup rg5=(RadioGroup)findViewById(R.id.SecurityPatchRadio);
+        for (int i = 0; i < rg.getChildCount(); i++) {
+            rg.getChildAt(i).setEnabled(false);
+        }
+    }
+
     public void resetAllQuestions(View view){
         RadioGroup rg1=(RadioGroup)findViewById(R.id.devLock_RG);
         RadioGroup rg2=(RadioGroup)findViewById(R.id.DevVer_RG);
@@ -318,4 +328,5 @@ public class questions extends AppCompatActivity {
         rg6.clearCheck();
         rg7.clearCheck();
     }
+
 }

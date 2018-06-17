@@ -17,4 +17,5 @@
     <string name="screenTimeout_txt">Screen Timeout</string>
     <string name="screenTimeout_Val">0</string>
     <string name="screenTimeout_Score">-1</string>
+    <string name="within_3_months">&lt;3mos</string>
 </resources>

@@ -16,4 +16,7 @@ rule THIRD_PARTYAPPS if third_partyapps = >5 then score = 1
 rule THIRD_PARTYAPPS if third_partyapps = >7 then score = 2
 rule DEV_MODE if dev_mode = ON then score = 1
 rule DEV_MODE if dev_mode = OFF then score = 0
+rule DL&LT if dev_lock = Yes & lock_timeout = 15 sec then score = 0
+rule DL&LT if dev_lock = Yes & lock_timeout = 30 sec then score = 1
+rule DL&LT if dev_lock = Yes & lock_timeout = >60 sec then score = 2
 

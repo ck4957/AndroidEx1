@@ -34,6 +34,10 @@ public class Rule
             this.cond_name = cond_name;
             this.cond_val = cond_val;
         }
+
+        public String toString(){
+            return "Cond Name: "+cond_name+" Cond Val: "+cond_val;
+        }
     }
 
     class Action
@@ -102,6 +106,10 @@ public class Rule
         }
         return rules;
 
+    }
+
+    public String toString(){
+        return "RuleName: "+rule_name;
     }
 
 

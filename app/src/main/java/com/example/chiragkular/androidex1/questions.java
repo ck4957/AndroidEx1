@@ -1,5 +1,6 @@
 package com.example.chiragkular.androidex1;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -156,12 +157,24 @@ public class questions extends AppCompatActivity {
         for(Rule fact:Facts) {
             for (Rule rule : Rules) {
                 if (fact.rule_name.equals(rule.rule_name)){
+                    int count = 0;
                     for(Rule.Condition fact_cond: fact.conditions) {
                         for (Rule.Condition rule_cond : rule.conditions) {
                             if (fact_cond.cond_name.equals(rule_cond.cond_name)
-                                && fact_cond.cond_val.equals(rule_cond.cond_val))
-                                total_score += rule.action.score;
+                                && fact_cond.cond_val.equals(rule_cond.cond_val)) {
+                                count++;
+                                Log.d("Rules",fact.rule_name+" "+rule_cond.cond_name+" "+rule_cond.cond_val+" "+String.valueOf(rule.action.score));
+                                Log.d("Counter",String.valueOf(count));
+                                //total_score += rule.action.score;
+
+                            }
                         }
+                    }
+                    if(count==fact.conditions.size()){
+                        //Log.d("Score",fact.rule_name+" "+rule_cond.cond_name+" "+rule_cond.cond_val+" "+String.valueOf(rule.action.score));
+                        total_score += rule.action.score;
+                        Log.d("Total Sc",String.valueOf(total_score));
+
                     }
                 }
             }
@@ -193,7 +206,7 @@ public class questions extends AppCompatActivity {
 
                     Rule newFact = new Rule(DL_LT_SLT_RL);
 
-                    Rule.Condition condition1 = newFact.new Condition(DEV_LOC_CN, value1);
+                    Rule.Condition condition1 = newFact.new Condition(DEV_LOCK_CN, value1);
                     Rule.Condition condition2 = newFact.new Condition(DEV_LOCK_TYPE_CN, value2);
                     Rule.Condition condition3 = newFact.new Condition(LOCK_TIMEOUT_CN, value3);
 
@@ -297,7 +310,9 @@ public class questions extends AppCompatActivity {
         if(devLoc_RG.getCheckedRadioButtonId() != -1){
             AddSingleNewFact(devLoc_RG, facts, DEV_LOC_RL, DEV_LOC_CN);
         }
-
+        Log.d("facts",facts.toString());
+        for(Rule fact:facts)
+        Log.d("facts",fact.conditions.toString());
         return facts;
     }
 
@@ -340,8 +355,10 @@ public class questions extends AppCompatActivity {
         dng.setText("0");
         TextView sign = findViewById(R.id.txt_sigApps);
         sign.setText("0");
-        TextView score_txt = findViewById(R.id.txt_ScoreVal);
+        TextView score_txt = findViewById(R.id.txt_SysScoreVal);
         score_txt.setText("0");
+        TextView appScore_txt = findViewById(R.id.txt_AppScoreVal);
+        appScore_txt.setText(String.valueOf("0"));
     }
 
     public void print_PermAppCategoryList()
@@ -349,24 +366,18 @@ public class questions extends AppCompatActivity {
         AppPermissions ap = new AppPermissions();
         ap.getAllApps();
         ap.appClassification();
-//        ArrayAdapter adapter = new ArrayAdapter<String>(this,
-//                android.R.layout.simple_list_item_1, ap.normalApp);
-//
-//        ListView listView = (ListView) findViewById(R.id.listViewApp);
-//        listView.setAdapter(adapter);
-//        ArrayAdapter adapter1 = new ArrayAdapter<String>(this,
-//                android.R.layout.simple_list_item_1, ap.dangerousApp);
-//
-//        ListView listView1 = (ListView) findViewById(R.id.dangerAppView);
-//        listView1.setAdapter(adapter1);
-        //Score
-//        AppPermissions ap = new AppPermissions();
-//        ap.getAllApps();
-//        int sc =ap.evaluateSystem();
-//        String scoreApp = "Application score: "+String.valueOf(sc);
-//
-//        TextView score = findViewById(R.id.appScoreTxt);
-//        score.setText(scoreApp);
+        /*
+        ArrayAdapter adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, ap.normalApp);
+
+        ListView listView = (ListView) findViewById(R.id.listViewApp);
+        listView.setAdapter(adapter);
+        ArrayAdapter adapter1 = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, ap.dangerousApp);
+
+        ListView listView1 = (ListView) findViewById(R.id.dangerAppView);
+        listView1.setAdapter(adapter1);
+        */
 
         TextView norm = findViewById(R.id.txt_normalApps);
         norm.setText(String.valueOf(ap.normalApp.size()));
@@ -374,11 +385,50 @@ public class questions extends AppCompatActivity {
         dng.setText(String.valueOf(ap.dangerousApp.size()));
         TextView sign = findViewById(R.id.txt_sigApps);
         sign.setText(String.valueOf(ap.signatureApp.size()));
+
+        // Print App Security Score
+        String status = ap.evaluateSystem();
+        TextView score_txt = findViewById(R.id.txt_AppScoreVal);
+        if(status == MyConstants.LOWRISK_) {
+            score_txt.setText(String.valueOf(status));
+            score_txt.setTextColor(Color.GREEN);
+        }
+        else if(status == MyConstants.MEDRISK){
+            score_txt.setText(String.valueOf(status));
+            score_txt.setTextColor(Color.BLUE);
+
+        }
+        else if(status == MyConstants.HIGHRISK){
+            score_txt.setText(String.valueOf(status));
+            score_txt.setTextColor(Color.RED);
+        }
+        //return permAppScore;
+
     }
     public void printOverallAppScore(int score) {
         int total_score=score;
-        TextView score_txt = findViewById(R.id.txt_ScoreVal);
-        score_txt.setText(String.valueOf(total_score));
+        String status = "";
+        TextView score_txt = findViewById(R.id.txt_SysScoreVal);
+
+        if(total_score<2) {
+            status = MyConstants.LOWRISK_;
+            score_txt.setText(String.valueOf(status));
+            score_txt.setTextColor(Color.GREEN);
+        }
+        else if(total_score<5) {
+            status = MyConstants.MEDRISK;
+            score_txt.setText(String.valueOf(status));
+            score_txt.setTextColor(Color.BLUE);
+
+        }
+        else if(total_score >= 5){
+            status = MyConstants.HIGHRISK;
+            score_txt.setText(String.valueOf(status));
+            score_txt.setTextColor(Color.RED);
+        }
+        else{
+            status = "ERROR. Reset and Re-evaluate";
+        }
 
     }
 

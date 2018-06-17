@@ -103,7 +103,7 @@ public class AppPermissions {
             }
         }
     }
-    public int evaluateSystem()
+    public String evaluateSystem()
     {
         AppDetails apd;
         int totalApp = appList.size();
@@ -114,11 +114,11 @@ public class AppPermissions {
             totalScore+=apd.appScore;
         }
         if (totalScore<=totalApp && totalScore!=0)
-            return MyConstants.MED_RISK;
+            return MyConstants.MEDRISK;
         else if (totalScore>totalApp)
-            return MyConstants.HIGH_RISK;
+            return MyConstants.HIGHRISK;
         else
-            return MyConstants.LOW_RISK;
+            return MyConstants.LOWRISK_;
     }
     public void print()
     {

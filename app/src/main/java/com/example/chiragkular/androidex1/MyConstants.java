@@ -13,6 +13,11 @@ public class MyConstants {
     public static final int MED_RISK = 1;
     public static final int HIGH_RISK = 2;
 
+    public static final String LOWRISK_ = "LOW RISK";
+    public static final String MEDRISK = "MEDIUM RISK";
+    public static final String HIGHRISK = "HIGH RISK";
+
+
     public static final String PROTECTION_NORMAL = "Normal";
     public static final String PROTECTION_DANGEROUS = "Dangerous";
     public static final String PROTECTION_SIGNATURE = "Signature";

@@ -43,26 +43,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//    public void analyzeSystem(View view) throws Settings.SettingNotFoundException {
-//
-//        DeviceSecure ds = new DeviceSecure();
-//        int deviceSecure_Score = ds.DeviceSecureAnalysis();
-//        TextView score_deviceSecure = findViewById(R.id.txtScore_deviceSecure);
-//        score_deviceSecure.setText(String.valueOf(deviceSecure_Score));
-//
-//        DeviceVersion dv= new DeviceVersion();
-//        int deviceVersion_Score = dv.DeviceVersionAnalysis();
-//        TextView score_deviceVersion = findViewById(R.id.txtScore_deviceVersion);
-//        score_deviceVersion.setText(String.valueOf(deviceVersion_Score));
-//        //getAllApps(getApplicationContext());
-//        AppPermissions perm = new AppPermissions();
-//        perm.getAllApps();
-//        perm.print();
-//        Log.e("SystemEvaluation",String.valueOf(perm.evaluateSystem()));
-//
-//    }
+    public void analyzeSystem(View view) throws Settings.SettingNotFoundException {
 
+        DeviceSecure ds = new DeviceSecure();
+        int deviceSecure_Score = ds.DeviceSecureAnalysis();
+        TextView score_deviceSecure = findViewById(R.id.txtScore_deviceSecure);
+        score_deviceSecure.setText(String.valueOf(deviceSecure_Score));
 
+        DeviceVersion dv= new DeviceVersion();
+        int deviceVersion_Score = dv.DeviceVersionAnalysis();
+        TextView score_deviceVersion = findViewById(R.id.txtScore_deviceVersion);
+        score_deviceVersion.setText(String.valueOf(deviceVersion_Score));
+
+    }
 
 
     public void OtherSecurity(Context context)
@@ -76,55 +69,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public String printLoops(Object[] someList){
-        for (Object item: someList){
-            Log.e("All Items",item.toString());
-        }
-        return "------------------------";
-    }
 
-    public String printLoops(int[] someList){
-        for (int item: someList){
-            Log.e("All Items", String.valueOf(item));
-        }
-        return "------------------------";
-    }
-
-    public void readOSVersion(Context context){
-        KeyguardManager km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
-        boolean deviceSecure = km.isDeviceSecure();
-        String manufacturer = Build.MANUFACTURER;
-        String model = Build.MODEL;
-        int version = Build.VERSION.SDK_INT;
-        String versionRelease = Build.VERSION.RELEASE;
-
-
-        Log.e("MyActivity", "manufacturer " + manufacturer
-                + " \n model " + model
-                + " \n version " + version
-                + " \n versionRelease " + versionRelease
-                + "\n Device Secure "+ deviceSecure
-        );
-    }
-
-    public void checkPerm(View view){
-        // Check if Calendar permission is already available
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CALENDAR)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Permission Available
-
-        }
-        else{
-            // Permission not Granted
-            // Explain why permission is needed
-            if(shouldShowRequestPermissionRationale(Manifest.permission.READ_CALENDAR)){
-                Toast.makeText(this,"Calendar permission is needed to read birthday events.",
-                        Toast.LENGTH_SHORT).show();
-            }
-
-            // Request the necessary Permission
-            requestPermissions(new String[]{ Manifest.permission.READ_CALENDAR }, REQUEST_CALENDAR);
-        }
-
-    }
 }

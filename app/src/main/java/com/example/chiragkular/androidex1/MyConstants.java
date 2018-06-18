@@ -7,7 +7,8 @@ import android.view.animation.AccelerateInterpolator;
 
 public class MyConstants {
 
-    public static final String PLAYSTORE_JSON_FILE = "playStoreMetaData.json";
+    public final static String PLAYSTORE_JSON_FILE = "playStoreMetaData.json";
+    public static final String RULES_TXT_FILE = "Rules.txt";
 
     public static final int LOW_RISK = 0;
     public static final int MED_RISK = 1;
@@ -21,7 +22,7 @@ public class MyConstants {
     public static final String PROTECTION_NORMAL = "Normal";
     public static final String PROTECTION_DANGEROUS = "Dangerous";
     public static final String PROTECTION_SIGNATURE = "Signature";
-    public static final String PROTECTION_UNKNOWN = "Unknown";
+
     //public
     //Nougat N_MR1
     public static final int API_LEVEL_26 = 26;
@@ -40,10 +41,17 @@ public class MyConstants {
         mContext = context;
     }
 
+    /**
+     * Creates a common activity variable to be used across the project
+     * @return activity
+     */
     public static Activity getmActivity(){
         return mActivity;
     }
-
+    /**
+     * Creates a common context variable to be used across the project
+     * @return context
+     */
     public static Context getmContext(){
         return mContext;
     }

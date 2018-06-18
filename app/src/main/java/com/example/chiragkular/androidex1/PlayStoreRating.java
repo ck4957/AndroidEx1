@@ -1,29 +1,24 @@
 package com.example.chiragkular.androidex1;
 
 
-import android.net.Uri;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import static com.example.chiragkular.androidex1.MyConstants.*;
 
 public class PlayStoreRating {
 
     public Map getAppRatings() throws IOException, JSONException {
-        InputStream is = MyConstants.getmActivity().getAssets().open(MyConstants.PLAYSTORE_JSON_FILE);
+        InputStream is = getmActivity().getAssets().open(PLAYSTORE_JSON_FILE);
         Map<String, Float> AppRatings = new HashMap<String, Float>();
         int size = is.available();
         byte[] buffer = new byte[size];
@@ -42,11 +37,11 @@ public class PlayStoreRating {
     public int getRatingScore(float val){
         int score=-1;
         if (val >= 4.0)
-            score = MyConstants.LOW_RISK;
+            score = LOW_RISK;
         else if(val >2.5 && val<4.0)
-            score = MyConstants.MED_RISK;
+            score = MED_RISK;
         else
-            score = MyConstants.HIGH_RISK;
+            score = HIGH_RISK;
         return score;
 
     }

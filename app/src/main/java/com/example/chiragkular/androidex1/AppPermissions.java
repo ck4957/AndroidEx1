@@ -5,17 +5,23 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PermissionInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.chiragkular.androidex1.MyConstants.*;
 
 public class AppPermissions {
     List<AppDetails> appList = new ArrayList<AppDetails>();
     List<String> normalApp = new ArrayList<String>();
     List<String> dangerousApp = new ArrayList<String>();
     List<String> signatureApp = new ArrayList<String>();
+
+    /**
+     * Method creates a list of all the application names and their permission
+     * and set its protection level and corresponding score
+     */
     public void getAllApps()
     {
         final PackageManager pkgMngr = MyConstants.getmContext().getPackageManager();
@@ -36,23 +42,18 @@ public class AppPermissions {
                         if (singlePermission.contains("android.permission.")) {
                             PermissionInfo permInfo = MyConstants.getmContext().getPackageManager().getPermissionInfo(singlePermission, PackageManager.GET_META_DATA);
                             if(permInfo!=null) {
-                                //String protectionLevel;
                                 switch (permInfo.protectionLevel)
                                 {
                                     case PermissionInfo.PROTECTION_NORMAL:
-                                        //protectionLevel = MyConstants.PROTECTION_NORMAL;
                                         appDetails.normalPermissionCount++;
                                         break;
                                     case PermissionInfo.PROTECTION_DANGEROUS:
-                                        //protectionLevel = MyConstants.PROTECTION_DANGEROUS;
                                         appDetails.dangerPermissionCount++;
                                         break;
                                     case PermissionInfo.PROTECTION_SIGNATURE:
-                                        //protectionLevel = MyConstants.PROTECTION_SIGNATURE;
                                         appDetails.signaturePermissionCount++;
                                         break;
                                     default:
-                                        //protectionLevel = MyConstants.PROTECTION_UNKNOWN;
                                         break;
                                 }
                             }
@@ -60,19 +61,19 @@ public class AppPermissions {
                     }
                 }
                 String applicationStatus = appDetails.getApplicationStatus();
-                if(applicationStatus.equals(MyConstants.PROTECTION_NORMAL))
+                if(applicationStatus.equals(PROTECTION_NORMAL))
                 {
-                    appDetails.setStatus(MyConstants.PROTECTION_NORMAL);
-                    appDetails.setScore(MyConstants.PROTECTION_NORMAL);
+                    appDetails.setStatus(PROTECTION_NORMAL);
+                    appDetails.setScore(PROTECTION_NORMAL);
                 }
-                else if(applicationStatus.equals(MyConstants.PROTECTION_DANGEROUS))
+                else if(applicationStatus.equals(PROTECTION_DANGEROUS))
                 {
-                    appDetails.setStatus(MyConstants.PROTECTION_DANGEROUS);
-                    appDetails.setScore(MyConstants.PROTECTION_DANGEROUS);
+                    appDetails.setStatus(PROTECTION_DANGEROUS);
+                    appDetails.setScore(PROTECTION_DANGEROUS);
                 }
                 else {
-                    appDetails.setStatus(MyConstants.PROTECTION_SIGNATURE);
-                    appDetails.setScore(MyConstants.PROTECTION_SIGNATURE);
+                    appDetails.setStatus(PROTECTION_SIGNATURE);
+                    appDetails.setScore(PROTECTION_SIGNATURE);
                 }
                 appList.add(appDetails);
             }
@@ -82,15 +83,20 @@ public class AppPermissions {
         }
 
     }
+
+    /**
+     * Method classify each application into categories: normal, dangerous and Signature App
+     */
     public void appClassification()
     {
-        AppDetails apd;String name,status;
+        AppDetails apd;
+        String name,status;
         for(int i=0;i<appList.size();i++)
         {
             apd = appList.get(i);
             name = apd.getAppName();
             status = apd.getStatus();
-            if(status.equals(MyConstants.PROTECTION_NORMAL))
+            if(status.equals(PROTECTION_NORMAL))
             {
                 this.normalApp.add(name);
             }
@@ -103,6 +109,12 @@ public class AppPermissions {
             }
         }
     }
+
+    /**
+     * Method aggregates the score of each App
+     * and evaluates the total score as low, medium or high risk
+     * @return
+     */
     public String evaluateSystem()
     {
         AppDetails apd;
@@ -120,6 +132,10 @@ public class AppPermissions {
         else
             return MyConstants.LOWRISK_;
     }
+
+    /**
+     * Log the App name and its corresponding score
+     */
     public void print()
     {
         AppDetails apd;

@@ -48,4 +48,3 @@ rule DV_SP if dev_ver = 8.0 && sec_patch = <12 mos then score = 2
 rule DM_TP if dev_mode = On && third_partyapps = >3 then score = 1
 rule DM_TP if dev_mode = On && third_partyapps = >5 then score = 2
 rule DM_TP if dev_mode = On && third_partyapps = >7 then score = 2
-

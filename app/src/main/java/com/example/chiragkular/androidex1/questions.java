@@ -59,6 +59,8 @@ public class questions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
+
+        // Get the value of all Radio Groups
         dev_Lock_RG=(RadioGroup)findViewById(R.id.devLock_RG);
         lock_type_RG=(RadioGroup)findViewById(R.id.lockType_RG);
         lock_timeout_RG=(RadioGroup)findViewById(R.id.LockTimeOut_RG);
@@ -72,8 +74,15 @@ public class questions extends AppCompatActivity {
         devLoc_RG=(RadioGroup)findViewById(R.id.DeviceLocation_RG);
     }
 
+    /**
+     * Method is invoved on evaluate button press. It evaluates facts and rules and finally calculates
+     * the score and print it.
+     * It creates list of rules by parsing Rules.txt from Asset folder
+     * It gets the list of facts answered by user
+     * It calculates the
+     * @param view
+     */
     public void evaluateButton(View view) {
-
         List<Rule> Rules = null;
         try {
             Rules = Rule.parseRules();
@@ -154,32 +163,39 @@ public class questions extends AppCompatActivity {
 
     public int calculateScore(List<Rule> Rules, List<Rule> Facts){
         int total_score = 0;
-        for(Rule fact:Facts) {
-            for (Rule rule : Rules) {
-                if (fact.rule_name.equals(rule.rule_name)){
-                    int count = 0;
-                    for(Rule.Condition fact_cond: fact.conditions) {
-                        for (Rule.Condition rule_cond : rule.conditions) {
-                            if (fact_cond.cond_name.equals(rule_cond.cond_name)
-                                && fact_cond.cond_val.equals(rule_cond.cond_val)) {
-                                count++;
-                                Log.d("Rules",fact.rule_name+" "+rule_cond.cond_name+" "+rule_cond.cond_val+" "+String.valueOf(rule.action.score));
-                                Log.d("Counter",String.valueOf(count));
-                                //total_score += rule.action.score;
 
+        //If user didn't select any thing
+        if (Facts.size() == 0)
+            return -1;
+        else if(Rules.size() == 0)
+            return -2;
+        else {
+            for (Rule fact : Facts) {
+                for (Rule rule : Rules) {
+                    if (fact.rule_name.equals(rule.rule_name)) {
+                        int count = 0;
+                        for (Rule.Condition fact_cond : fact.conditions) {
+                            for (Rule.Condition rule_cond : rule.conditions) {
+                                if (fact_cond.cond_name.equals(rule_cond.cond_name)
+                                        && fact_cond.cond_val.equals(rule_cond.cond_val)) {
+                                    count++;
+                                    Log.d("Rules", fact.rule_name + " " + rule_cond.cond_name + " " + rule_cond.cond_val + " " + String.valueOf(rule.action.score));
+                                    Log.d("Counter", String.valueOf(count));
+                                    //total_score += rule.action.score;
+
+                                }
                             }
                         }
-                    }
-                    if(count==fact.conditions.size()){
-                        //Log.d("Score",fact.rule_name+" "+rule_cond.cond_name+" "+rule_cond.cond_val+" "+String.valueOf(rule.action.score));
-                        total_score += rule.action.score;
-                        Log.d("Total Sc",String.valueOf(total_score));
+                        if (count == fact.conditions.size()) {
+                            //Log.d("Score",fact.rule_name+" "+rule_cond.cond_name+" "+rule_cond.cond_val+" "+String.valueOf(rule.action.score));
+                            total_score += rule.action.score;
+                            Log.d("Total Sc", String.valueOf(total_score));
 
+                        }
                     }
                 }
             }
         }
-
         Log.d("Score:",String.valueOf(total_score));
         return total_score;
     }
@@ -410,12 +426,12 @@ public class questions extends AppCompatActivity {
         String status = "";
         TextView score_txt = findViewById(R.id.txt_SysScoreVal);
 
-        if(total_score<2) {
+        if(total_score>=0 && total_score<2) {
             status = MyConstants.LOWRISK_;
             score_txt.setText(String.valueOf(status));
             score_txt.setTextColor(Color.GREEN);
         }
-        else if(total_score<6) {
+        else if(total_score>2 && total_score<6) {
             status = MyConstants.MEDRISK;
             score_txt.setText(String.valueOf(status));
             score_txt.setTextColor(Color.BLUE);
@@ -426,10 +442,16 @@ public class questions extends AppCompatActivity {
             score_txt.setText(String.valueOf(status));
             score_txt.setTextColor(Color.RED);
         }
-        else{
-            status = "ERROR. Reset and Re-evaluate";
+        else if(total_score == -1){
+            status = "Select atleast one input";
+            score_txt.setText(String.valueOf(status));
+            score_txt.setTextColor(Color.RED);
         }
-
+        else if(total_score == -2){
+            status = "NO RULES DEFINED";
+            score_txt.setText(String.valueOf(status));
+            score_txt.setTextColor(Color.RED);
+        }
     }
 
 }

@@ -11,8 +11,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
+import static com.example.chiragkular.androidex1.MyConstants.RULES_TXT_FILE;
 
 public class Rule
 {
@@ -48,11 +47,16 @@ public class Rule
         }
     }
 
+    /**
+     * Method reads all the lines from Rules.txt
+     * @return list of String
+     * @throws IOException
+     */
     public static List<String> ReadRules() throws IOException {
         String str = "";
         List<String> lines = new ArrayList<>();
         StringBuffer sf = new StringBuffer();
-        InputStream is = MyConstants.getmActivity().getAssets().open("Rules.txt");
+        InputStream is = MyConstants.getmActivity().getAssets().open(RULES_TXT_FILE);
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         while ((str = br.readLine()) != null) {
             lines.add(str);
@@ -61,6 +65,11 @@ public class Rule
         return lines;
     }
 
+    /**
+     * It creates list of rules by parsing Rules.txt from Asset folder
+     * @return
+     * @throws IOException
+     */
     public static List<Rule> parseRules() throws IOException {
         List<String> lines = ReadRules();
         List<Rule> rules = new ArrayList<>();
@@ -108,6 +117,10 @@ public class Rule
 
     }
 
+    /**
+     * Custom string method to print Rules
+     * @return
+     */
     public String toString(){
         return "RuleName: "+rule_name;
     }

@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
     }
-    public void transitButton(View view)
+    public void startButton(View view)
     {
         Intent intent = new Intent(this, questions.class);
         startActivity(intent);
@@ -47,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
 
         DeviceSecure ds = new DeviceSecure();
         int deviceSecure_Score = ds.DeviceSecureAnalysis();
-        TextView score_deviceSecure = findViewById(R.id.txtScore_deviceSecure);
-        score_deviceSecure.setText(String.valueOf(deviceSecure_Score));
+//        TextView score_deviceSecure = findViewById(R.id.txtScore_deviceSecure);
+//        score_deviceSecure.setText(String.valueOf(deviceSecure_Score));
 
         DeviceVersion dv= new DeviceVersion();
         int deviceVersion_Score = dv.DeviceVersionAnalysis();
-        TextView score_deviceVersion = findViewById(R.id.txtScore_deviceVersion);
-        score_deviceVersion.setText(String.valueOf(deviceVersion_Score));
+//        TextView score_deviceVersion = findViewById(R.id.txtScore_deviceVersion);
+//        score_deviceVersion.setText(String.valueOf(deviceVersion_Score));
 
     }
 

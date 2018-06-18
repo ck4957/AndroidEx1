@@ -12,14 +12,22 @@ public class DeviceSecure {
 
     public static int DEVICE_SECURE_SCORE = -1;
 
+    /**
+     * Check if device is locked by reading system values
+     * @return boolean value
+     */
     public boolean IsDeviceLocked(){
         KeyguardManager km = (KeyguardManager) MyConstants.getmContext().getSystemService(Context.KEYGUARD_SERVICE);
         boolean deviceSecureFlag = km.isDeviceSecure();
-        TextView deviceSecure = MyConstants.getmActivity().findViewById(R.id.txtVal_deviceSecure);
-        deviceSecure.setText(String.valueOf(deviceSecureFlag));
+//        TextView deviceSecure = MyConstants.getmActivity().findViewById(R.id.txtVal_deviceSecure);
+//        deviceSecure.setText(String.valueOf(deviceSecureFlag));
         return deviceSecureFlag;
     }
 
+    /**
+     * Gets the screen off time out in milliseconds
+     * @return
+     */
     public long getTimeout() {
         int timeOutinMS = Settings.System.getInt(MyConstants.getmContext().getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT,0);
         long timeOutinSec = TimeUnit.MILLISECONDS.toSeconds(timeOutinMS);
@@ -28,6 +36,10 @@ public class DeviceSecure {
     }
 
 
+    /**
+     * Calculates the score based on device lock and screen timeout values
+     * @return
+     */
     public int DeviceSecureAnalysis(){
         long timeOut = -1;
         if(IsDeviceLocked()){
